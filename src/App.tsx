@@ -1,4 +1,4 @@
-import Login from "./screens/LoginPage/LoginPage";
+import AppRouter from "./router/AppRouter";
 
 const App = () => {
   return (
@@ -10,7 +10,7 @@ const App = () => {
         flexDirection: "column",
       }}
     >
-      <Login />
+      <AppRouter />
     </div>
   );
 };
