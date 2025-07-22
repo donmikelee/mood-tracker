@@ -2,15 +2,15 @@ import type { CSSProperties } from "react";
 import { ErrorMessage } from "@hookform/error-message";
 import { useLoginForm } from "../../hooks/useLoginForm";
 
-const { register, errors, isSubmitting, handleSubmit, onSubmit } =
-  useLoginForm();
-
 const validationStyle: CSSProperties = {
   color: "firebrick",
   fontWeight: "bold",
 };
 
 const LoginForm = () => {
+  const { register, errors, isSubmitting, handleSubmit, onSubmit } =
+    useLoginForm();
+
   return (
     <form
       className="login-form"
