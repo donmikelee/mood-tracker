@@ -8,8 +8,7 @@ const validationStyle: CSSProperties = {
 };
 
 const LoginForm = () => {
-  const { register, errors, isSubmitting, handleSubmit, onSubmit } =
-    useLoginForm();
+  const { register, errors, isSubmitting, submit } = useLoginForm();
 
   return (
     <form
@@ -19,7 +18,7 @@ const LoginForm = () => {
         flexDirection: "column",
         rowGap: "10px",
       }}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={submit}
     >
       <label htmlFor="form-email">Email adress</label>
       <input
