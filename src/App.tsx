@@ -1,7 +1,18 @@
+import AppRouter from "./router/AppRouter";
+
 const App = () => {
   return (
-  <p>Hello World</p>  
-)
-}
- 
+    <div
+      className="mood-tracker-app"
+      style={{
+        height: "calc(100vh - 16px)",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <AppRouter />
+    </div>
+  );
+};
+
 export default App;
