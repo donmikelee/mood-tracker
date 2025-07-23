@@ -1,0 +1,24 @@
+@use "sass:map";
+@use './colors' as *;
+
+$neutral900: map.get($moodAppColors, neutral900);
+$neutral600: map.get($moodAppColors, neutral600);
+$neutral300: map.get($moodAppColors, neutral300);
+$neutral200: map.get($moodAppColors, neutral200);
+$neutral0:   map.get($moodAppColors, neutral0);
+
+$blue700: map.get($moodAppColors, blue700);
+$blue600: map.get($moodAppColors, blue600);
+$blue200: map.get($moodAppColors, blue200);
+$blue100: map.get($moodAppColors, blue100);
+
+$red700: map.get($moodAppColors, red700);
+$red300: map.get($moodAppColors, red300);
+
+$indigo200: map.get($moodAppColors, indigo200);
+$blue300: map.get($moodAppColors, blue300);
+$green300: map.get($moodAppColors, green300);
+$amber300: map.get($moodAppColors, amber300);
+
+$lightGradientStart: map.get($moodAppColors, lightGradientStart);
+$lightGradientEnd:   map.get($moodAppColors, lightGradientEnd);
