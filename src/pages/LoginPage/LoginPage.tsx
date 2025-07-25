@@ -23,10 +23,10 @@ const LoginPage = () => {
         }}
       >
         <div className="login-form-header">
-          <h2 className="form-header">Welcome back!</h2>
-          <small className="form-header-description">
+          <h2 className="form-header text-preset-3">Welcome back!</h2>
+          <span className="form-header-description text-preset-6--regular">
             Log in to continue tracking your mood and sleep
-          </small>
+          </span>
         </div>
         <LoginForm />
         <div className="login-form-footer">

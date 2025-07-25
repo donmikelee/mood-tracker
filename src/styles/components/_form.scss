@@ -1,0 +1,11 @@
+@use "../utilities/variables" as *;
+
+body {
+  font-family: "Reddit Sans", sans-serif;
+}
+
+.main-wrapper {
+  height: calc(100vh - 16px);
+  display: flex;
+  flex-direction: column;
+}
