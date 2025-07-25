@@ -1,11 +1,13 @@
 @use "sass:map";
-@use './colors' as *;
+@use "./colors" as *;
+
+// colors for mood app
 
 $neutral900: map.get($moodAppColors, neutral900);
 $neutral600: map.get($moodAppColors, neutral600);
 $neutral300: map.get($moodAppColors, neutral300);
 $neutral200: map.get($moodAppColors, neutral200);
-$neutral0:   map.get($moodAppColors, neutral0);
+$neutral0: map.get($moodAppColors, neutral0);
 
 $blue700: map.get($moodAppColors, blue700);
 $blue600: map.get($moodAppColors, blue600);
@@ -21,4 +23,49 @@ $green300: map.get($moodAppColors, green300);
 $amber300: map.get($moodAppColors, amber300);
 
 $lightGradientStart: map.get($moodAppColors, lightGradientStart);
-$lightGradientEnd:   map.get($moodAppColors, lightGradientEnd);
+$lightGradientEnd: map.get($moodAppColors, lightGradientEnd);
+$lightGradient: linear-gradient(
+  180deg,
+  $lightGradientStart 72.99%,
+  $lightGradientEnd 100%
+);
+
+//box-shadow for mood app
+
+$boxShadowForm: 0px 8px 16px 0px rgba(32, 37, 41, 0.08);
+
+// spacing variables for mood app
+
+$spacing-0: 0px;
+$spacing-025: 2px;
+$spacing-050: 4px;
+$spacing-075: 6px;
+$spacing-100: 8px;
+$spacing-125: 10px;
+$spacing-150: 12px;
+$spacing-200: 16px;
+$spacing-250: 20px;
+$spacing-300: 24px;
+$spacing-400: 32px;
+$spacing-500: 40px;
+$spacing-600: 48px;
+$spacing-800: 64px;
+$spacing-1000: 80px;
+
+// radius variables for mood app
+
+$radius-0: 0px;
+$radius-4: 4px;
+$radius-6: 6px;
+$radius-8: 8px;
+$radius-10: 10px;
+$radius-12: 12px;
+$radius-16: 16px;
+$radius-20: 20px;
+$radius-24: 24px;
+$radius-full: 999px;
+
+// form variables for mood app
+
+$max-width-auth-box: 530px;
+$max-height-auth-box: 503px;

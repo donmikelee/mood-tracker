@@ -12,7 +12,7 @@ const LoginForm = () => {
 
   return (
     <form
-      className="login-form"
+      className="form"
       style={{
         display: "flex",
         flexDirection: "column",

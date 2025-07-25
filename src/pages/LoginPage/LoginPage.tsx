@@ -1,41 +1,31 @@
 import LoginForm from "./LoginForm";
+import logo from "../../styles/images/logo.svg";
 
 const LoginPage = () => {
   return (
-    <>
-      <nav
-        style={{
-          width: "100%",
-          textAlign: "center",
-          padding: "20px 0",
-          fontSize: "34px",
-        }}
-      >
-        <a href="#">😀 Mood tracker</a>
-      </nav>
-      <div
-        className="login-form-container"
-        style={{
-          margin: "auto",
-          display: "flex",
-          flexDirection: "column",
-          rowGap: "10px",
-        }}
-      >
-        <div className="login-form-header">
-          <h2 className="form-header text-preset-3">Welcome back!</h2>
-          <small className="form-header-description text-preset-6--regular">
-            Log in to continue tracking your mood and sleep
-          </small>
-        </div>
-        <LoginForm />
-        <div className="login-form-footer">
-          <span className="form-footer">
-            Haven't got an account? <a href="">Sign up.</a>
-          </span>
+    <div className="login-page">
+      <header className="moodtracker-entry-header">
+        <a href="#">
+          <img src={logo} alt={logo} />
+        </a>
+      </header>
+      <div className="container">
+        <div className="form-box">
+          <div className="form-header">
+            <h2 className="header-text text-preset-3">Welcome back!</h2>
+            <small className="header-desc text-preset-6--regular">
+              Log in to continue tracking your mood and sleep
+            </small>
+          </div>
+          <LoginForm />
+          <div className="form-footer-container">
+            <span className="form-footer">
+              Haven't got an account? <a href="">Sign up.</a>
+            </span>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

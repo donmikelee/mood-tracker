@@ -1,0 +1,16 @@
+@use '../utilities/variables' as *;
+
+.moodtracker-app {
+  font-family: 'Reddit Sans', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $lightGradient;
+}
+
+.moodtracker-entry-header {
+  width: 100%;
+  text-align: center;
+  padding-top: $spacing-1000;
+  margin-bottom: $spacing-600;
+}

@@ -1,11 +1,28 @@
-@use '../utilities/variables' as *;
+@use "../utilities/variables" as *;
 
-body {
-  font-family: 'Reddit Sans', sans-serif;
-}
-
-.mood-tracker-app {
-  height: calc(100vh - 16px);
+.form-box {
+  height: 100%;
+  width: 100%;
+  max-width: $max-width-auth-box;
+  max-height: $max-height-auth-box;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  background-color: $neutral0;
+  border-radius: $radius-16;
+  padding: $spacing-500 $spacing-400;
+  box-shadow: $boxShadowForm;
+}
+
+.form-header {
+  margin-bottom: $spacing-400;
+
+  .header-text {
+    color: $neutral900;
+    margin-bottom: $spacing-100;
+  }
+
+  .header-desc {
+    color: $neutral600;
+  }
 }
