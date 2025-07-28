@@ -2,7 +2,7 @@ import AppRouter from "./router/AppRouter";
 
 const App = () => {
   return (
-    <div className="moodtracker-app">
+    <div className="main-wrapper">
       <AppRouter />
     </div>
   );

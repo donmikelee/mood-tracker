@@ -1,137 +1,145 @@
 @font-face {
-  font-family: 'Reddit Sans';
-  src: url('./fonts/RedditSans-Regular.ttf') format('truetype');
+  font-family: "Reddit Sans";
+  src: url("../../assets/fonts/RedditSans-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Reddit Sans';
-  src: url('./fonts/RedditSans-Medium.ttf') format('truetype');
+  font-family: "Reddit Sans";
+  src: url("../../assets/fonts/RedditSans-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Reddit Sans';
-  src: url('./fonts/RedditSans-MediumItalic.ttf') format('truetype');
+  font-family: "Reddit Sans";
+  src: url("../../assets/fonts/RedditSans-MediumItalic.ttf") format("truetype");
   font-weight: 500;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'Reddit Sans';
-  src: url('./fonts/RedditSans-SemiBold.ttf') format('truetype');
+  font-family: "Reddit Sans";
+  src: url("../../assets/fonts/RedditSans-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Reddit Sans';
-  src: url('./fonts/RedditSans-Bold.ttf') format('truetype');
+  font-family: "Reddit Sans";
+  src: url("../../assets/fonts/RedditSans-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
-.text-preset-1 {
-  font-weight: 700;
-  font-size: 52px;
-  line-height: 1.4; 
-  letter-spacing: -2px;
+@function rem($px) {
+  @return $px / 16 * 1rem;
 }
 
-.text-preset-1--mobile {
-  font-weight: 700;
-  font-size: 46px;
-  line-height: 1.2; 
-  letter-spacing: -2px;
-}
+$text-presets: (
+  "1": (
+    weight: 700,
+    size: 52,
+    lh: 1.4,
+    ls: -2px,
+  ),
+  "1--mobile": (
+    weight: 700,
+    size: 46,
+    lh: 1.2,
+    ls: -2px,
+  ),
+  "2": (
+    weight: 700,
+    size: 40,
+    lh: 1.2,
+    ls: -0.3px,
+  ),
+  "2--mobile": (
+    weight: 700,
+    size: 32,
+    lh: 1.2,
+    ls: -0.3px,
+  ),
+  "3": (
+    weight: 600,
+    size: 28,
+    lh: 1.3,
+    ls: -0.3px,
+  ),
+  "3-mobile": (
+    weight: 600,
+    size: 24,
+    lh: 1.4,
+    ls: 0,
+  ),
+  "4": (
+    weight: 600,
+    size: 24,
+    lh: 1.4,
+    ls: 0,
+  ),
+  "4--regular": (
+    weight: 400,
+    size: 24,
+    lh: 1.4,
+    ls: 0,
+  ),
+  "5": (
+    weight: 600,
+    size: 20,
+    lh: 1.4,
+    ls: 0,
+  ),
+  "6": (
+    weight: 500,
+    size: 18,
+    lh: 1.2,
+    ls: 0,
+  ),
+  "6--italic": (
+    weight: 500,
+    size: 18,
+    lh: 1.3,
+    ls: 0,
+    font-style: italic,
+  ),
+  "6--regular": (
+    weight: 400,
+    size: 18,
+    lh: 1.4,
+    ls: -0.3px,
+  ),
+  "7": (
+    weight: 400,
+    size: 15,
+    lh: 1.4,
+    ls: -0.3px,
+  ),
+  "8": (
+    weight: 600,
+    size: 13,
+    lh: 1,
+    ls: 0,
+  ),
+  "9": (
+    weight: 400,
+    size: 12,
+    lh: 1.1,
+    ls: 0,
+  ),
+);
 
-.text-preset-2 {
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 1.2;
-  letter-spacing: -0.3px;
-}
+@each $name, $props in $text-presets {
+  .text-preset-#{$name} {
+    font-weight: map-get($props, weight);
+    font-size: rem(map-get($props, size));
+    line-height: map-get($props, lh);
+    letter-spacing: map-get($props, ls);
 
-.text-preset-2--mobile {
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1.2;
-  letter-spacing: -0.3px;
+    @if map-has-key($props, font-style) {
+      font-style: map-get($props, font-style);
+    }
+  }
 }
-
-.text-preset-3 {
-  font-weight: 600;
-  font-size: 28px;
-  line-height: 1.3;
-  letter-spacing: -0.3px;
-}
-
-.text-preset-3-mobile {
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 1.4;
-  letter-spacing: 0;
-}
-
-.text-preset-4 {
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 1.4;
-  letter-spacing: 0px;
-}
-
-.text-preset-4--regular {
-@extend .text-preset-4;
-  font-weight: 400; 
-}
-
-.text-preset-5 {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.4;
-  letter-spacing: 0px;
-}
-
-.text-preset-6 {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 1.2;
-  letter-spacing: 0px;
-}
-
-.text-preset-6--italic {
-@extend .text-preset-6;
-  line-height: 1.3;
-  font-style: italic;
-}
-
-.text-preset-6--regular {
-@extend .text-preset-6;
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: -0.3px;
-}
-
-.text-preset-7 {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 1.4;
-  letter-spacing: -0.3px;
-}
-
-.text-preset-8 {
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 1;
-  letter-spacing: 0;
-}
-
-.text-preset-9 {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.1;
-  letter-spacing: 0;
-}
-
