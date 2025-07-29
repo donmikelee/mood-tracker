@@ -1,10 +1,16 @@
 import LoginForm from "./LoginForm";
-import logo from "../../styles/images/logo.svg";
+import logo from "../../assets/images/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate("/sign-up");
+  };
   return (
     <div className="login-page">
-      <header className="moodtracker-entry-header">
+      <header className="main-header">
         <a href="#">
           <img src={logo} alt={logo} />
         </a>
@@ -19,8 +25,15 @@ const LoginPage = () => {
           </div>
           <LoginForm />
           <div className="form-footer-container">
-            <span className="form-footer">
-              Haven't got an account? <a href="">Sign up.</a>
+            <span className="form-footer-text text-preset-6--regular">
+              Haven't got an account?{" "}
+              <a
+                href=""
+                onClick={handleNavigation}
+                className="form-footer-link"
+              >
+                Sign up.
+              </a>
             </span>
           </div>
         </div>
