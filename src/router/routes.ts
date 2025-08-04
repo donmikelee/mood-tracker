@@ -1,8 +1,8 @@
-const links = {
+const routes = {
   home: "/",
   login: "/login",
   dashboard: "/dashboard",
   signup: "/sign-up",
 };
 
-export default links;
+export default routes;

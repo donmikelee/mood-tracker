@@ -1,7 +1,7 @@
 import LoginForm from "./LoginForm";
 import logo from "../../assets/images/logo.svg";
 import { Link } from "react-router-dom";
-import links from "../../router/links";
+import routes from "../../router/routes";
 
 const LoginPage = () => {
   return (
@@ -23,7 +23,7 @@ const LoginPage = () => {
           <div className="form-footer-container">
             <span className="form-footer-text text-preset-6--regular">
               Haven't got an account?{" "}
-              <Link to={links.signup} className="form-footer-link">
+              <Link to={routes.signup} className="form-footer-link">
                 Sign up.
               </Link>
             </span>

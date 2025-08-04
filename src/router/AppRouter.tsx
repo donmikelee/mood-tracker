@@ -2,10 +2,10 @@ import { Routes, Route } from "react-router-dom";
 import Login from "../pages/LoginPage/LoginPage";
 import Dashboard from "../pages/DashboardPage/Dashboard";
 import SignUp from "../pages/SignUpPage/SignUp";
-import links from "./links";
+import routes from "./routes";
 
 const AppRouter = () => {
-  const { home, dashboard, signup } = links;
+  const { home, dashboard, signup } = routes;
   return (
     <Routes>
       <Route path={home} element={<Login />} />
