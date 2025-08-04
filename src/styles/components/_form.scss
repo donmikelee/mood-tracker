@@ -54,7 +54,7 @@
   &.input-error {
     border-color: $red700;
     outline: none;
-    box-shadow: unset !important;
+    box-shadow: unset;
   }
 
   &:hover {

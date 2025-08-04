@@ -1,14 +1,11 @@
 @use "sass:map";
 @use "./colors" as *;
 
-// breakpoints for mood app
-
-$breakpoint-sm-max: 576px; // ≤576px
-$breakpoint-sm: 576px; // ≥576px
-$breakpoint-md: 768px; // ≥768px
-$breakpoint-lg: 992px; // ≥992px
-$breakpoint-xl: 1200px; // ≥1200px
-$breakpoint-xxl: 1400px; // ≥1400px
+$breakpoint-sm-max: 576px;
+$breakpoint-sm: 576px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
 
 // colors for mood app
 
@@ -33,11 +30,11 @@ $amber300: map.get($moodAppColors, amber300);
 
 $lightGradientStart: map.get($moodAppColors, lightGradientStart);
 $lightGradientEnd: map.get($moodAppColors, lightGradientEnd);
-$lightGradient: linear-gradient(180deg,
-    $lightGradientStart 72.99%,
-    $lightGradientEnd 100%);
-
-//box-shadow for mood app
+$lightGradient: linear-gradient(
+  180deg,
+  $lightGradientStart 72.99%,
+  $lightGradientEnd 100%
+);
 
 $boxShadowForm: 0px 8px 16px 0px rgba(32, 37, 41, 0.08);
 

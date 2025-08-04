@@ -13,7 +13,7 @@ const LoginForm = () => {
         </label>
         <input
           {...register("email")}
-          id="form-email"
+          id="email"
           type="text"
           placeholder="name@mail.com"
           className={`form-input text-preset-6 ${
@@ -32,7 +32,7 @@ const LoginForm = () => {
         </label>
         <input
           {...register("password")}
-          id="form-password"
+          id="password"
           type="password"
           className={`${
             errors.password ? "input-error " : ""

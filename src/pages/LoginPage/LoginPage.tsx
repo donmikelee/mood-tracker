@@ -1,18 +1,14 @@
 import LoginForm from "./LoginForm";
 import logo from "../../assets/images/logo.svg";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import links from "../../router/links";
 
 const LoginPage = () => {
-  const navigate = useNavigate();
-
-  const handleNavigation = () => {
-    navigate("/sign-up");
-  };
   return (
     <div className="login-page">
       <header className="main-header">
         <a href="#">
-          <img src={logo} alt={logo} />
+          <img src={logo} alt={"Mood tracker"} />
         </a>
       </header>
       <div className="container">
@@ -27,13 +23,9 @@ const LoginPage = () => {
           <div className="form-footer-container">
             <span className="form-footer-text text-preset-6--regular">
               Haven't got an account?{" "}
-              <a
-                href=""
-                onClick={handleNavigation}
-                className="form-footer-link"
-              >
+              <Link to={links.signup} className="form-footer-link">
                 Sign up.
-              </a>
+              </Link>
             </span>
           </div>
         </div>

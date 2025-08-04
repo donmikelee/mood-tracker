@@ -1,14 +1,13 @@
-import React from "react";
 import iconHint from "../assets/images/icon-hint.svg";
 
 interface ErrorTextProps {
   children: string;
 }
 
-const ErrorText: React.FC<ErrorTextProps> = ({ children }) => {
+const ErrorText = ({ children }: ErrorTextProps) => {
   return (
     <span className="form-error-text text-preset-9">
-      <img src={iconHint} alt={iconHint} />
+      <img src={iconHint} alt={"Error"} />
       <span>{children}</span>
     </span>
   );
