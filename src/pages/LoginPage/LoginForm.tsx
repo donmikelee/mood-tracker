@@ -23,7 +23,7 @@ const LoginForm = () => {
         <ErrorMessage
           errors={errors}
           name="email"
-          render={({ message }) => <ErrorText>{message}</ErrorText>}
+          render={({ message }) => <ErrorText text={message} />}
         />
       </div>
       <div className="form-password-wrapper">
@@ -41,7 +41,7 @@ const LoginForm = () => {
         <ErrorMessage
           errors={errors}
           name="password"
-          render={({ message }) => <ErrorText>{message}</ErrorText>}
+          render={({ message }) => <ErrorText text={message} />}
         />
       </div>
       <button
@@ -54,7 +54,7 @@ const LoginForm = () => {
       <ErrorMessage
         errors={errors}
         name="root"
-        render={({ message }) => <ErrorText>{message}</ErrorText>}
+        render={({ message }) => <ErrorText text={message} />}
       />
     </form>
   );

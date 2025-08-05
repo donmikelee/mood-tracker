@@ -1,14 +1,14 @@
 import iconHint from "../assets/images/icon-hint.svg";
 
 interface ErrorTextProps {
-  children: string;
+  text: string;
 }
 
-const ErrorText = ({ children }: ErrorTextProps) => {
+const ErrorText = ({ text }: ErrorTextProps) => {
   return (
     <span className="form-error-text text-preset-9">
       <img src={iconHint} alt={"Error"} />
-      <span>{children}</span>
+      <span>{text}</span>
     </span>
   );
 };
