@@ -1,11 +1,112 @@
 @use "../utilities/variables" as *;
+@use "../utilities/mixins" as *;
 
-body {
-  font-family: "Reddit Sans", sans-serif;
-}
-
-.main-wrapper {
-  height: calc(100vh - 16px);
+.form-box {
+  height: 100%;
+  width: 100%;
+  max-width: $max-width-auth-box;
+  max-height: $max-height-auth-box;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  background-color: $neutral0;
+  border-radius: $radius-16;
+  padding: $spacing-500 $spacing-400;
+  box-shadow: $boxShadowForm;
+
+  @include respond-up(sm-max) {
+    max-width: 343px;
+    padding: $spacing-500 $spacing-200;
+  }
+}
+
+.form-header {
+  margin-bottom: $spacing-400;
+
+  .header-text {
+    color: $neutral900;
+    margin-bottom: $spacing-100;
+  }
+
+  .header-desc {
+    color: $neutral600;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  margin-bottom: $spacing-100;
+}
+
+.form-input {
+  width: 100%;
+  height: 49px;
+  padding: $spacing-200 $spacing-150;
+  border-radius: $radius-10;
+  border: 1px solid $neutral300;
+  font-size: 16px;
+  color: $neutral900;
+
+  &.input-error {
+    border-color: $red700;
+    outline: none;
+    box-shadow: unset;
+  }
+
+  &:hover {
+    border-color: $neutral600;
+  }
+
+  &:focus-within {
+    @include focus-border;
+  }
+
+  &::placeholder {
+    color: $neutral600;
+  }
+}
+
+.form-email-wrapper {
+  margin-bottom: $spacing-250;
+
+  &:has(.input-error) {
+    margin-bottom: $spacing-0;
+  }
+}
+
+.form-password-wrapper {
+  margin-bottom: $spacing-400;
+}
+
+.form-footer-container {
+  margin-top: $spacing-250;
+  text-align: center;
+}
+
+.form-footer-text {
+  color: $neutral600;
+
+  a {
+    color: $blue600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.form-error-text {
+  display: inline-flex;
+  color: $red700;
+  margin-top: $spacing-075;
+
+  span {
+    margin-top: calc($spacing-075 / 2);
+    margin-left: $spacing-075;
+  }
 }

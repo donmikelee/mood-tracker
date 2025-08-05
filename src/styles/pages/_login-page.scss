@@ -1,0 +1,17 @@
+@use "../utilities/variables" as *;
+@use "../utilities/mixins" as *;
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  .container {
+    flex-grow: 1;
+
+    @include respond-up(sm-max) {
+      padding: $spacing-0 $spacing-200;
+    }
+
+  }
+}

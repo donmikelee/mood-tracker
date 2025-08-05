@@ -1,0 +1,43 @@
+@use "../utilities/variables" as *;
+@use "../utilities/mixins" as *;
+
+.main-wrapper {
+  font-family: "Reddit Sans", sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $lightGradient;
+}
+
+.main-header {
+  width: 100%;
+  text-align: center;
+  padding-top: $spacing-1000;
+  margin-bottom: $spacing-600;
+}
+
+.primary-button {
+  width: 100%;
+  height: 52px;
+  background-color: $blue600;
+  color: $neutral0;
+  border-radius: $radius-10;
+  border: none;
+  transition: background-color 0.3s;
+  padding: $spacing-150 $spacing-400;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $blue700;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px $neutral0, 0 0 0 5px $blue600;
+  }
+
+  &:disabled {
+    background-color: $blue200;
+    cursor: not-allowed;
+  }
+}
