@@ -1,4 +1,4 @@
-import iconHint from "../assets/images/icon-hint.svg";
+import iconHint from "../../assets/images/icon-hint.svg";
 
 interface ErrorTextProps {
   text: string;

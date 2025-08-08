@@ -1,6 +1,6 @@
-import { ErrorMessage } from "@hookform/error-message";
 import { useLoginForm } from "../../hooks/useLoginForm";
-import ErrorText from "../../components/ErrorText";
+import FormField from "../../components/FormField/FormField";
+import Button from "../../components/Button/Button";
 
 const LoginForm = () => {
   const { register, errors, isSubmitting, submit } = useLoginForm();
@@ -8,53 +8,28 @@ const LoginForm = () => {
   return (
     <form className="form" onSubmit={submit}>
       <div className="form-email-wrapper">
-        <label htmlFor="form-email" className="form-label text-preset-6">
-          Email adress
-        </label>
-        <input
-          {...register("email")}
-          id="email"
-          type="text"
+        <FormField
+          id={"email"}
+          type={"text"}
           placeholder="name@mail.com"
-          className={`form-input text-preset-6 ${
-            errors.email ? "input-error" : ""
-          }`}
-        />
-        <ErrorMessage
+          label="Email adress"
+          reg={register("email")}
           errors={errors}
-          name="email"
-          render={({ message }) => <ErrorText text={message} />}
         />
       </div>
       <div className="form-password-wrapper">
-        <label htmlFor="form-password" className="form-label text-preset-6">
-          Password
-        </label>
-        <input
-          {...register("password")}
-          id="password"
-          type="password"
-          className={`${
-            errors.password ? "input-error " : ""
-          }form-input text-preset-6`}
-        />
-        <ErrorMessage
+        <FormField
+          id={"password"}
+          type={"password"}
+          label="Password"
+          reg={register("password")}
           errors={errors}
-          name="password"
-          render={({ message }) => <ErrorText text={message} />}
         />
       </div>
-      <button
-        disabled={isSubmitting}
-        type="submit"
-        className="form-button primary-button text-preset-6"
-      >
-        {isSubmitting ? "Loading..." : "Log In"}
-      </button>
-      <ErrorMessage
-        errors={errors}
-        name="root"
-        render={({ message }) => <ErrorText text={message} />}
+      <Button
+        isSubmitting={isSubmitting}
+        type={"submit"}
+        text={isSubmitting ? "Loading..." : "Log In"}
       />
     </form>
   );
