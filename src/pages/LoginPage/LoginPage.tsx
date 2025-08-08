@@ -15,9 +15,9 @@ const LoginPage = () => {
         <div className="form-box">
           <div className="form-header">
             <h2 className="header-text text-preset-3">Welcome back!</h2>
-            <small className="header-desc text-preset-6--regular">
+            <span className="header-desc text-preset-6--regular">
               Log in to continue tracking your mood and sleep
-            </small>
+            </span>
           </div>
           <LoginForm />
           <div className="form-footer-container">

@@ -9,7 +9,7 @@ const loginValidationSchema = z.object({
   password: z.string().min(8),
 });
 
-type FormFields = z.infer<typeof loginValidationSchema> & {
+export type FormFields = z.infer<typeof loginValidationSchema> & {
   root?: string;
 };
 
