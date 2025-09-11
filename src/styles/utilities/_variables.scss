@@ -1,11 +1,12 @@
 @use "sass:map";
 @use "./colors" as *;
 
-$breakpoint-sm-max: 576px;
+// breakpoint variables for mood app
+
 $breakpoint-sm: 576px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
-$breakpoint-xxl: 1400px;
+$breakpoint-xxl: 1375px;
 
 // colors for mood app
 
@@ -17,6 +18,7 @@ $neutral0: map.get($moodAppColors, neutral0);
 
 $blue700: map.get($moodAppColors, blue700);
 $blue600: map.get($moodAppColors, blue600);
+$blue300: map.get($moodAppColors, blue300);
 $blue200: map.get($moodAppColors, blue200);
 $blue100: map.get($moodAppColors, blue100);
 
@@ -24,7 +26,6 @@ $red700: map.get($moodAppColors, red700);
 $red300: map.get($moodAppColors, red300);
 
 $indigo200: map.get($moodAppColors, indigo200);
-$blue300: map.get($moodAppColors, blue300);
 $green300: map.get($moodAppColors, green300);
 $amber300: map.get($moodAppColors, amber300);
 
@@ -36,6 +37,7 @@ $lightGradient: linear-gradient(
   $lightGradientEnd 100%
 );
 
+$shadow-primary: 0px 5px 8px 0px rgba(33, 33, 77, 0.16);
 $boxShadowForm: 0px 8px 16px 0px rgba(32, 37, 41, 0.08);
 
 // spacing variables for mood app

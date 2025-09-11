@@ -1,0 +1,118 @@
+@use "../utilities/variables" as *;
+
+.dashboard-page {
+  padding: $spacing-500 135px $spacing-1000;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-400;
+
+  @media (max-width: $breakpoint-lg) {
+    padding: $spacing-500 $spacing-400 $spacing-1000;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $spacing-300 $spacing-200 $spacing-1000;
+    gap: $spacing-300;
+  }
+}
+
+.greeting-text {
+  text-align: center;
+}
+
+.large-text {
+  margin: $spacing-125 0;
+}
+
+.hello-avatar {
+  color: $blue600;
+}
+
+.date {
+  color: $neutral600;
+}
+
+.add-log {
+  width: max-content;
+  font-weight: 500;
+  margin-top: $spacing-800;
+  height: 60px;
+}
+
+.mood-data {
+  display: flex;
+  gap: $spacing-400;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.average-card-title {
+  color: $neutral900;
+}
+
+.average-card-desc {
+  color: $neutral600;
+}
+
+.average-data-text {
+  color: $neutral900;
+}
+
+.average-stats {
+  background-color: $neutral0;
+  border-radius: $radius-16;
+  padding: $spacing-300;
+  flex-grow: 1;
+  max-width: 370px;
+  max-height: 453px;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: $spacing-300;
+
+  @media (max-width: $breakpoint-xxl) {
+    max-width: unset;
+  }
+}
+
+.average-card {
+  display: inline-flex;
+  flex-direction: column;
+  row-gap: $spacing-150;
+  width: 100%;
+}
+
+.average-data {
+  background-color: $blue100;
+  display: inline-flex;
+  flex-direction: column;
+  row-gap: $spacing-150;
+  padding: $spacing-500 $spacing-250;
+  border-radius: $radius-16;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 221px;
+    height: 221px;
+    border-radius: 50%;
+    background-color: $neutral0;
+    top: -38px;
+    right: -165px;
+    opacity: 0.2;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 221px;
+    height: 221px;
+    border-radius: 50%;
+    background-color: $neutral0;
+    top: 0px;
+    right: -190px;
+    opacity: 0.3;
+  }
+}

@@ -14,7 +14,7 @@
   padding: $spacing-500 $spacing-400;
   box-shadow: $boxShadowForm;
 
-  @include respond-up(sm-max) {
+  @media (max-width: $breakpoint-sm) {
     max-width: 343px;
     padding: $spacing-500 $spacing-200;
   }
@@ -49,7 +49,7 @@
   padding: $spacing-200 $spacing-150;
   border-radius: $radius-10;
   border: 1px solid $neutral300;
-  font-size: 16px;
+  font-size: $spacing-200;
   color: $neutral900;
 
   &.input-error {
