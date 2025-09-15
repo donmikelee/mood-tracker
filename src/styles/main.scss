@@ -1,6 +1,11 @@
 @use "./utilities/typography";
-@use "./pages/app";
 @use "./utilities/variables";
-@use "./components/form";
-@use "./pages/login-page";
 @use "./utilities/reset";
+
+@use "./components/form";
+@use "./components/navigation";
+@use "./components/chart";
+
+@use "./pages/app";
+@use "./pages/login-page";
+@use "./pages/dashboard-page";

@@ -1,0 +1,64 @@
+@use "../utilities/variables" as *;
+
+.mood-sleep-card {
+  flex: 1;
+  max-width: 768px;
+  min-width: 704px;
+  background-color: #fff;
+  border-radius: $radius-16;
+  padding: $spacing-400;
+  overflow-x: auto;
+
+  @media (max-width: $breakpoint-lg) {
+    min-width: 100%;
+    max-width: 100%;
+    padding: $spacing-200;
+  }
+}
+
+.mood-chart-title {
+  margin-bottom: $spacing-400;
+  color: $neutral900;
+  position: sticky;
+  left: 0;
+}
+
+.mood-sleep-chart {
+  min-width: 656px;
+}
+
+.mood-very-sad {
+  fill: $red300;
+}
+
+.mood-sad {
+  fill: $indigo200;
+}
+
+.mood-neutral {
+  fill: $blue300;
+}
+
+.mood-happy {
+  fill: $green300;
+}
+
+.mood-very-happy {
+  fill: $amber300;
+}
+
+.mood-icon-container {
+  display: flex;
+  justify-content: center;
+}
+
+.mood-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.mood-chart-yaxis-text,
+.mood-chart-xaxis-text {
+  fill: $neutral600;
+  font-weight: 600;
+}

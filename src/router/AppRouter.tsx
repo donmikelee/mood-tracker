@@ -5,10 +5,10 @@ import SignUp from "../pages/SignUpPage/SignUp";
 import routes from "./routes";
 
 const AppRouter = () => {
-  const { dashboard, signup, login } = routes;
+  const { dashboard, signup, login, home } = routes;
   return (
     <Routes>
-      <Route path={dashboard} element={<Dashboard />} />
+      <Route path={home} element={<Dashboard />} />
       <Route path={signup} element={<SignUp />} />
       <Route path={login} element={<Login />} />
     </Routes>
