@@ -55,7 +55,12 @@ const MoodSleepChart = () => {
               tickLine={false}
               tick={renderYAxisTick}
             />
-            <Bar dataKey="sleep" shape={<CustomBar />} />
+            <Bar
+              dataKey="sleep"
+              shape={(props: any) => (
+                <CustomBar {...props} trackedData={props.payload} />
+              )}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>

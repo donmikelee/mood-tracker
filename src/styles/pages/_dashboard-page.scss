@@ -50,6 +50,11 @@
   color: $neutral900;
 }
 
+.average-card-header {
+  display: inline-flex;
+  column-gap: $spacing-100;
+}
+
 .average-card-desc {
   color: $neutral600;
 }

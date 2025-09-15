@@ -1,5 +1,3 @@
-import React from "react";
-
 import iconHappy from "../../assets/images/icon-happy-white.svg";
 import iconVeryHappy from "../../assets/images/icon-very-happy-white.svg";
 import iconNeutral from "../../assets/images/icon-neutral-white.svg";
@@ -12,7 +10,7 @@ interface CustomBarProps {
   width?: number;
   height?: number;
   radius?: number | number[];
-  payload?: {
+  trackedData?: {
     mood: string;
   };
 }
@@ -25,16 +23,16 @@ const moodIcons: Record<string, string> = {
   verySad: iconVerySad,
 };
 
-const CustomBar: React.FC<CustomBarProps> = ({
+const CustomBar = ({
   x = 0,
   y = 0,
   height = 0,
-  payload = { mood: "" },
-}) => {
-  const normalizedMood = payload.mood.replace(/\s+/g, "-").toLowerCase();
+  trackedData = { mood: "" },
+}: CustomBarProps) => {
+  const normalizedMood = trackedData.mood.replace(/\s+/g, "-").toLowerCase();
   const moodClass = `mood-${normalizedMood}`;
 
-  const iconKey = payload.mood.replace(/\s+([a-z])/g, (_, c) =>
+  const iconKey = trackedData.mood.replace(/\s+([a-z])/g, (_, c) =>
     c.toUpperCase()
   );
   const icon = moodIcons[iconKey as keyof typeof moodIcons];
@@ -52,7 +50,7 @@ const CustomBar: React.FC<CustomBarProps> = ({
       {icon && height > 30 && (
         <foreignObject x={x - 10} y={y + 5} width={40} height={30}>
           <div className="mood-icon-container">
-            <img className="mood-icon" src={icon} alt={payload.mood} />
+            <img className="mood-icon" src={icon} alt={trackedData.mood} />
           </div>
         </foreignObject>
       )}
