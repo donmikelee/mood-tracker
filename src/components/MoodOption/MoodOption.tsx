@@ -1,7 +1,7 @@
 type MoodOptionProps = {
   moodLabel: string;
   moodImage: any;
-  moodCliked?: () => void;
+  moodClicked?: () => void;
   selected?: boolean;
 };
 
@@ -9,12 +9,12 @@ const MoodOption = ({
   moodLabel,
   moodImage,
   selected,
-  moodCliked,
+  moodClicked,
 }: MoodOptionProps) => {
   return (
     <li
       className={`mood-option ${selected ? "selected" : ""}`}
-      onClick={moodCliked}
+      onClick={moodClicked}
     >
       <div className="mood-radio-container">
         <span
