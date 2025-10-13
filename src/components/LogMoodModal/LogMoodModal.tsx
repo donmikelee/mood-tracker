@@ -29,7 +29,6 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
         !modalRef.current.contains(event.target as Node)
       ) {
         closeLog();
-        console.log("klik poza modalem");
       }
     };
 
