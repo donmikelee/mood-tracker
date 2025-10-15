@@ -1,24 +1,27 @@
 import iconClose from "../../assets/images/icon-close.svg";
 import { type ReactElement, useRef, useEffect } from "react";
-import iconNeutral from "../../assets/images/icon-neutral-color.svg";
-import iconHappy from "../../assets/images/icon-happy-color.svg";
-import iconSad from "../../assets/images/icon-sad-color.svg";
-import iconVerySad from "../../assets/images/icon-very-sad-color.svg";
-import iconVeryHAppy from "../../assets/images/icon-very-happy-color.svg";
 import MoodOption from "../MoodOption/MoodOption";
 import { useState } from "react";
-import { useMoodAppStore } from "../../store/store";
+import { useMoodAppStore, useFeelingsAppStore } from "../../store/store";
 import ModalContent from "./ModalContent";
+import { feelings } from "../../data/feelings";
+import FeelingOption from "../FeelingOption/FeelingOption";
+import { moods } from "../../data/mood";
 
 type LogMoodModalProps = {
   closeLog: () => void;
 };
 
 const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedMood, setSelectedMood] = useState<number | null>(null);
+  const [selectedFeelings, setSelectedFeelings] = useState<number[]>([]);
   const [step, setStep] = useState<number>(0);
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
 
   const setLoggedMood = useMoodAppStore((state) => state.setLoggedMood);
+  const setLoggedFeelings = useFeelingsAppStore(
+    (state) => state.setLoggedFeelings
+  );
 
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -38,6 +41,19 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
     };
   }, [closeLog()]);
 
+  useEffect(() => {
+    switch (step) {
+      case 0:
+        setIsButtonDisabled(selectedMood === null);
+        break;
+      case 1:
+        setIsButtonDisabled(selectedFeelings.length === 0);
+        break;
+      default:
+        setIsButtonDisabled(isButtonDisabled);
+    }
+  }, [step, selectedMood, selectedFeelings]);
+
   const renderSteps = (): ReactElement[] => {
     const steps: number = 4;
     const activeStep: number = step;
@@ -50,32 +66,55 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
     ));
   };
   const renderMoodOptions = (): ReactElement[] => {
-    const moods = [
-      { label: "Very Happy", image: iconVeryHAppy },
-      { label: "Happy", image: iconHappy },
-      { label: "Neutral", image: iconNeutral },
-      { label: "Sad", image: iconSad },
-      { label: "Very Sad", image: iconVerySad },
-    ];
-
     const moodsRender = moods.map((mood, index) => (
       <MoodOption
         key={index}
         moodLabel={mood.label}
         moodImage={mood.image}
         moodClicked={() => {
-          setSelectedIndex(index);
+          setSelectedMood(index);
           setLoggedMood(mood.label);
         }}
-        selected={selectedIndex === index}
+        selected={selectedMood === index}
       />
     ));
 
     return moodsRender;
   };
 
+  const renderFeelingOptions = (): ReactElement[] => {
+    const handleFeelingClick = (index: number) => {
+      if (selectedFeelings.includes(index)) {
+        setSelectedFeelings((prev) => prev.filter((item) => item !== index));
+        setLoggedFeelings(
+          selectedFeelings
+            .filter((item) => item !== index)
+            .map((i) => feelings[i].label)
+        );
+        return;
+      }
+      if (selectedFeelings.length >= 3) return;
+      setSelectedFeelings((prev) => [...prev, index]);
+      setLoggedFeelings(
+        [...selectedFeelings, index].map((i) => feelings[i].label)
+      );
+    };
+
+    const feelingsRender = feelings.map((feeling, index) => (
+      <FeelingOption
+        key={index}
+        feelingLabel={feeling.label}
+        feelingClicked={() => {
+          handleFeelingClick(index);
+        }}
+        selected={selectedFeelings.includes(index)}
+      />
+    ));
+
+    return feelingsRender;
+  };
+
   const setNextStep = () => {
-    if (step === 0 && selectedIndex === null) return;
     setStep((prev) => prev + 1);
   };
 
@@ -89,7 +128,13 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
           />
         );
       case 1:
-        return <p>Step 2 content</p>;
+        return (
+          <ModalContent
+            contentTitle="How did you feel?"
+            contentDescription="Select up to three tags:"
+            renderOptions={renderFeelingOptions}
+          />
+        );
       case 2:
         return <p>Step 3 content</p>;
       case 3:
@@ -113,7 +158,7 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
         ) : (
           <button
             className="primary-button text-preset-5 log-continue-button"
-            disabled={selectedIndex === null}
+            disabled={isButtonDisabled}
             onClick={setNextStep}
           >
             Continue
