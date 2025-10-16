@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 @font-face {
   font-family: "Reddit Sans";
   src: url("../../assets/fonts/RedditSans-Regular.ttf") format("truetype");
@@ -49,6 +51,7 @@ $text-presets: (
     size: 46,
     lh: 1.2,
     ls: -2px,
+    mobile: true,
   ),
   "2": (
     weight: 700,
@@ -61,6 +64,7 @@ $text-presets: (
     size: 32,
     lh: 1.2,
     ls: -0.3px,
+    mobile: true,
   ),
   "3": (
     weight: 600,
@@ -73,6 +77,7 @@ $text-presets: (
     size: 24,
     lh: 1.4,
     ls: 0,
+    mobile: true,
   ),
   "4": (
     weight: 600,
@@ -140,6 +145,21 @@ $text-presets: (
 
     @if map-has-key($props, font-style) {
       font-style: map-get($props, font-style);
+    }
+  }
+
+  @if map-get($props, mobile) == true {
+    @media (max-width: $breakpoint-sm) {
+      .text-preset-#{$name} {
+        font-weight: map-get($props, weight);
+        font-size: rem(map-get($props, size));
+        line-height: map-get($props, lh);
+        letter-spacing: map-get($props, ls);
+
+        @if map-has-key($props, font-style) {
+          font-style: map-get($props, font-style);
+        }
+      }
     }
   }
 }

@@ -12,7 +12,9 @@ const ModalContent = ({
   return (
     <>
       <div className="modal-text">
-        <p className="text-preset-3">{contentTitle}</p>
+        <p className="modal-title text-preset-3 text-preset-2--mobile">
+          {contentTitle}
+        </p>
         {contentDescription && (
           <p className="modal-desc text-preset-6">{contentDescription}</p>
         )}

@@ -33,6 +33,12 @@
     flex-wrap: wrap;
     column-gap: $spacing-200;
   }
+
+  @media (max-width: $breakpoint-sm) {
+    height: 445px;
+    overflow: auto;
+    scroll-behavior: smooth;
+  }
 }
 
 .mood-radiobutton {
