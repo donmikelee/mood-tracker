@@ -2,7 +2,11 @@ import iconClose from "../../assets/images/icon-close.svg";
 import { type ReactElement, useRef, useEffect } from "react";
 import MoodOption from "../MoodOption/MoodOption";
 import { useState } from "react";
-import { useMoodAppStore, useFeelingsAppStore } from "../../store/store";
+import {
+  useMoodAppStore,
+  useFeelingsAppStore,
+  useLoggedTextAppStore,
+} from "../../store/store";
 import ModalContent from "./ModalContent";
 import { feelings } from "../../data/feelings";
 import FeelingOption from "../FeelingOption/FeelingOption";
@@ -17,10 +21,14 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
   const [selectedFeelings, setSelectedFeelings] = useState<number[]>([]);
   const [step, setStep] = useState<number>(0);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
+  const [loggedText, setLoggedText] = useState<string>("");
 
   const setLoggedMood = useMoodAppStore((state) => state.setLoggedMood);
   const setLoggedFeelings = useFeelingsAppStore(
     (state) => state.setLoggedFeelings
+  );
+  const setLoggedTextToStore = useLoggedTextAppStore(
+    (state) => state.setLoggedText
   );
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -49,10 +57,13 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
       case 1:
         setIsButtonDisabled(selectedFeelings.length === 0);
         break;
+      case 2:
+        setIsButtonDisabled(loggedText.trim().length === 0);
+        break;
       default:
         setIsButtonDisabled(isButtonDisabled);
     }
-  }, [step, selectedMood, selectedFeelings]);
+  }, [step, selectedMood, loggedText, selectedFeelings]);
 
   const renderSteps = (): ReactElement[] => {
     const steps: number = 4;
@@ -114,6 +125,33 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
     return feelingsRender;
   };
 
+  const renderTextAreaStep = () => {
+    const maxLength: number = 150;
+
+    const handleLoggedTextChange = (
+      e: React.ChangeEvent<HTMLTextAreaElement>
+    ) => {
+      setLoggedText(e.target.value);
+      setLoggedTextToStore(e.target.value.trim());
+    };
+
+    return (
+      <div className="loggedtext-container">
+        <textarea
+          id="log-textarea"
+          className="log-textarea text-preset-6--italic"
+          placeholder="Today I felt..."
+          rows={4}
+          maxLength={maxLength}
+          onChange={handleLoggedTextChange}
+        ></textarea>
+        <p className="textarea-counter text-preset-8">
+          {loggedText.length}/{maxLength}
+        </p>
+      </div>
+    );
+  };
+
   const setNextStep = () => {
     setStep((prev) => prev + 1);
   };
@@ -136,7 +174,12 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
           />
         );
       case 2:
-        return <p>Step 3 content</p>;
+        return (
+          <ModalContent
+            contentTitle="Write about your day..."
+            renderOptions={renderTextAreaStep}
+          />
+        );
       case 3:
         return <p>Step 4 content</p>;
       default:

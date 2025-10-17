@@ -1,5 +1,5 @@
 type ModalContentProps = {
-  renderOptions: () => React.ReactElement[];
+  renderOptions: () => React.ReactElement[] | React.ReactElement | undefined;
   contentTitle: string;
   contentDescription?: string;
 };
