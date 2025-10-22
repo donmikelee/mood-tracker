@@ -1,12 +1,7 @@
 import iconClose from "../../assets/images/icon-close.svg";
-import { type ReactElement } from "react";
-import iconNeutral from "../../assets/images/icon-neutral-color.svg";
-import iconHappy from "../../assets/images/icon-happy-color.svg";
-import iconSad from "../../assets/images/icon-sad-color.svg";
-import iconVerySad from "../../assets/images/icon-very-sad-color.svg";
-import iconVeryHAppy from "../../assets/images/icon-very-happy-color.svg";
-import MoodOption from "../MoodOption/MoodOption";
 import { useState } from "react";
+import Steps from "../Steps/Steps";
+import MoodOptionList from "../MoodOptionList/MoodOptionList";
 
 type LogMoodModalProps = {
   closeLog: () => void;
@@ -14,38 +9,6 @@ type LogMoodModalProps = {
 
 const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const renderSteps = (): ReactElement[] => {
-    const steps: number = 4;
-    const activeStep: number = 0;
-
-    return Array.from({ length: steps }, (_, i) => (
-      <span
-        key={i}
-        className={`step ${i === activeStep ? "step--active" : ""}`}
-      />
-    ));
-  };
-  const renderMoodOptions = (): ReactElement[] => {
-    const moods = [
-      { label: "Very Happy", image: iconVeryHAppy },
-      { label: "Happy", image: iconHappy },
-      { label: "Neutral", image: iconNeutral },
-      { label: "Sad", image: iconSad },
-      { label: "Very Sad", image: iconVerySad },
-    ];
-
-    const moodsRender = moods.map((mood, index) => (
-      <MoodOption
-        key={index}
-        moodLabel={mood.label}
-        moodImage={mood.image}
-        moodCliked={() => setSelectedIndex(index)}
-        selected={selectedIndex === index}
-      />
-    ));
-
-    return moodsRender;
-  };
 
   return (
     <div className="log-mood-modal">
@@ -54,11 +17,12 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
         <span className="close-icon" onClick={closeLog}>
           <img src={iconClose} alt="close icon" />
         </span>
-        <div className="log-stepper">{renderSteps()}</div>
+        <Steps />
         <p className="text-preset-3">How was your mood today?</p>
-        <div className="lod-mood-options">
-          <ul className="options-list">{renderMoodOptions()}</ul>
-        </div>
+        <MoodOptionList
+          moodClicked={(index: number) => setSelectedIndex(index)}
+          selectedIndex={selectedIndex === null ? -1 : selectedIndex}
+        />
         <button
           className="primary-button text-preset-5 log-continue-button"
           disabled={selectedIndex === null}
