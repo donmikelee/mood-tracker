@@ -1,6 +1,6 @@
 import iconClose from "../../assets/images/icon-close.svg";
 import { useState } from "react";
-import Steps from "../Steps/Steps";
+import Stepper from "../Stepper/Stepper";
 import MoodOptionList from "../MoodOptionList/MoodOptionList";
 
 type LogMoodModalProps = {
@@ -17,7 +17,7 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
         <span className="close-icon" onClick={closeLog}>
           <img src={iconClose} alt="close icon" />
         </span>
-        <Steps />
+        <Stepper />
         <p className="text-preset-3">How was your mood today?</p>
         <MoodOptionList
           moodClicked={(index: number) => setSelectedIndex(index)}
