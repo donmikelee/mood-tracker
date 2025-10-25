@@ -1,6 +1,6 @@
 import { type ReactElement } from "react";
 
-const Steps = () => {
+const Stepper = () => {
   const renderSteps = (): ReactElement[] => {
     const steps: number = 4;
     const activeStep: number = 0;
@@ -16,4 +16,4 @@ const Steps = () => {
   return <div className="log-stepper">{renderSteps()}</div>;
 };
 
-export default Steps;
+export default Stepper;
