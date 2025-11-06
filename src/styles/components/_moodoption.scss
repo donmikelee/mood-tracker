@@ -1,0 +1,49 @@
+@use "../utilities/variables" as *;
+
+.mood-option {
+  display: flex;
+  row-gap: $spacing-150;
+  cursor: pointer;
+  height: 62px;
+  background-color: $neutral0;
+  border: 2px solid $blue100;
+  border-radius: $radius-10;
+  align-items: center;
+  padding: $spacing-250 $spacing-150;
+  justify-content: space-between;
+
+  &.selected {
+    border: 2px solid $blue600;
+  }
+}
+
+.mood-radio-container {
+  display: flex;
+  align-items: center;
+  column-gap: $spacing-150;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: $spacing-150;
+}
+
+.mood-radiobutton {
+  height: 20px;
+  width: 20px;
+  border: 2px solid $blue200;
+  border-radius: $radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.selected {
+    border: 5px solid $blue600;
+  }
+}
+
+.mood-img {
+  height: 38px;
+  width: 38px;
+}
