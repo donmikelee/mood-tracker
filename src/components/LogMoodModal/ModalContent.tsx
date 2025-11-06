@@ -1,5 +1,5 @@
 type ModalContentProps = {
-  renderOptions: () => React.ReactElement[];
+  renderOptions: React.ReactNode;
   contentTitle: string;
   contentDescription?: string;
 };
@@ -16,10 +16,9 @@ const ModalContent = ({
         <p className="text-preset-6">{contentDescription}</p>
       )}
       <div className="lod-mood-options">
-        <ul className="options-list">{renderOptions()}</ul>
+        <ul className="options-list">{renderOptions}</ul>
       </div>
     </>
   );
 };
-
 export default ModalContent;

@@ -1,6 +1,6 @@
 type MoodOptionProps = {
   moodLabel: string;
-  moodImage: any;
+  moodImage: string;
   moodClicked?: () => void;
   selected?: boolean;
 };

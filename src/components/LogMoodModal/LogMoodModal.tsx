@@ -1,14 +1,8 @@
 import iconClose from "../../assets/images/icon-close.svg";
-import { type ReactElement, useRef, useEffect } from "react";
-import iconNeutral from "../../assets/images/icon-neutral-color.svg";
-import iconHappy from "../../assets/images/icon-happy-color.svg";
-import iconSad from "../../assets/images/icon-sad-color.svg";
-import iconVerySad from "../../assets/images/icon-very-sad-color.svg";
-import iconVeryHAppy from "../../assets/images/icon-very-happy-color.svg";
-import MoodOption from "../MoodOption/MoodOption";
-import { useState } from "react";
-import { useMoodAppStore } from "../../store/store";
+import { useRef, useEffect, useState } from "react";
 import ModalContent from "./ModalContent";
+import MoodOptionList from "../MoodOptionList/MoodOptionList";
+import Stepper from "../Stepper/Stepper";
 
 type LogMoodModalProps = {
   closeLog: () => void;
@@ -17,8 +11,6 @@ type LogMoodModalProps = {
 const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [step, setStep] = useState<number>(0);
-
-  const setLoggedMood = useMoodAppStore((state) => state.setLoggedMood);
 
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -38,42 +30,6 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
     };
   }, [closeLog()]);
 
-  const renderSteps = (): ReactElement[] => {
-    const steps: number = 4;
-    const activeStep: number = step;
-
-    return Array.from({ length: steps }, (_, i) => (
-      <span
-        key={i}
-        className={`step ${i <= activeStep ? "step--active" : ""}`}
-      />
-    ));
-  };
-  const renderMoodOptions = (): ReactElement[] => {
-    const moods = [
-      { label: "Very Happy", image: iconVeryHAppy },
-      { label: "Happy", image: iconHappy },
-      { label: "Neutral", image: iconNeutral },
-      { label: "Sad", image: iconSad },
-      { label: "Very Sad", image: iconVerySad },
-    ];
-
-    const moodsRender = moods.map((mood, index) => (
-      <MoodOption
-        key={index}
-        moodLabel={mood.label}
-        moodImage={mood.image}
-        moodClicked={() => {
-          setSelectedIndex(index);
-          setLoggedMood(mood.label);
-        }}
-        selected={selectedIndex === index}
-      />
-    ));
-
-    return moodsRender;
-  };
-
   const setNextStep = () => {
     if (step === 0 && selectedIndex === null) return;
     setStep((prev) => prev + 1);
@@ -85,7 +41,12 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
         return (
           <ModalContent
             contentTitle="How was your mood today?"
-            renderOptions={renderMoodOptions}
+            renderOptions={
+              <MoodOptionList
+                moodClicked={(index: number) => setSelectedIndex(index)}
+                selectedIndex={selectedIndex === null ? -1 : selectedIndex}
+              />
+            }
           />
         );
       case 1:
@@ -106,7 +67,7 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
         <span className="close-icon" onClick={closeLog}>
           <img src={iconClose} alt="close icon" />
         </span>
-        <div className="log-stepper">{renderSteps()}</div>
+        <Stepper step={step} />
         {renderModalContent()}
         {step === 3 ? (
           "Finished"
