@@ -1,14 +1,17 @@
 import { type ReactElement } from "react";
 
-const Stepper = () => {
+type StepperProps = {
+  activeStep: number;
+};
+
+const Stepper = ({ activeStep }: StepperProps) => {
   const renderSteps = (): ReactElement[] => {
-    const steps: number = 4;
-    const activeStep: number = 0;
+    const steps = 4;
 
     return Array.from({ length: steps }, (_, i) => (
       <span
         key={i}
-        className={`step ${i === activeStep ? "step--active" : ""}`}
+        className={`step ${i <= activeStep ? "step--active" : ""}`}
       />
     ));
   };
