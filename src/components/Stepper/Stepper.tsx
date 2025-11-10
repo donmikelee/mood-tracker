@@ -1,13 +1,12 @@
 import { type ReactElement } from "react";
 
 type StepperProps = {
-  step: number;
+  activeStep: number;
 };
 
-const Stepper = ({ step }: StepperProps) => {
+const Stepper = ({ activeStep }: StepperProps) => {
   const renderSteps = (): ReactElement[] => {
-    const steps: number = 4;
-    const activeStep: number = step;
+    const steps = 4;
 
     return Array.from({ length: steps }, (_, i) => (
       <span

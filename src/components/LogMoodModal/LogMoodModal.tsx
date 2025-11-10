@@ -1,5 +1,5 @@
 import iconClose from "../../assets/images/icon-close.svg";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import ModalContent from "./ModalContent";
 import MoodOptionList from "../MoodOptionList/MoodOptionList";
 import Stepper from "../Stepper/Stepper";
@@ -14,21 +14,11 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
 
   const modalRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
-        closeLog();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [closeLog()]);
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      closeLog();
+    }
+  };
 
   const setNextStep = () => {
     if (step === 0 && selectedIndex === null) return;
@@ -61,13 +51,13 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
   };
 
   return (
-    <div className="log-mood-modal">
+    <div className="log-mood-modal" onClick={handleOverlayClick}>
       <div className="log-modal-content" ref={modalRef}>
         <p className="text-preset-2">Log your mood</p>
         <span className="close-icon" onClick={closeLog}>
           <img src={iconClose} alt="close icon" />
         </span>
-        <Stepper step={step} />
+        <Stepper activeStep={step} />
         {renderModalContent()}
         {step === 3 ? (
           "Finished"
