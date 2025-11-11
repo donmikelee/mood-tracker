@@ -8,8 +8,6 @@ import {
   useLoggedTextAppStore,
 } from "../../store/store";
 import ModalContent from "./ModalContent";
-import { feelings } from "../../data/feelings";
-import FeelingOption from "../FeelingOption/FeelingOption";
 import { moods } from "../../data/mood";
 
 type LogMoodModalProps = {
@@ -32,22 +30,6 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
   );
 
   const modalRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
-        closeLog();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [closeLog()]);
 
   useEffect(() => {
     switch (step) {
@@ -91,38 +73,6 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
     ));
 
     return moodsRender;
-  };
-
-  const renderFeelingOptions = (): ReactElement[] => {
-    const handleFeelingClick = (index: number) => {
-      if (selectedFeelings.includes(index)) {
-        setSelectedFeelings((prev) => prev.filter((item) => item !== index));
-        setLoggedFeelings(
-          selectedFeelings
-            .filter((item) => item !== index)
-            .map((i) => feelings[i].label)
-        );
-        return;
-      }
-      if (selectedFeelings.length >= 3) return;
-      setSelectedFeelings((prev) => [...prev, index]);
-      setLoggedFeelings(
-        [...selectedFeelings, index].map((i) => feelings[i].label)
-      );
-    };
-
-    const feelingsRender = feelings.map((feeling, index) => (
-      <FeelingOption
-        key={index}
-        feelingLabel={feeling.label}
-        feelingClicked={() => {
-          handleFeelingClick(index);
-        }}
-        selected={selectedFeelings.includes(index)}
-      />
-    ));
-
-    return feelingsRender;
   };
 
   const renderTextAreaStep = () => {
@@ -170,7 +120,13 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
           <ModalContent
             contentTitle="How did you feel?"
             contentDescription="Select up to three tags:"
-            renderOptions={renderFeelingOptions}
+            renderOptions={
+              <FeelingOptionList
+                selectedFeelings={selectedFeelings}
+                setSelectedFeelings={setSelectedFeelings}
+                setLoggedFeelings={setLoggedFeelings}
+              />
+            }
           />
         );
       case 2:
