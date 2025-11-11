@@ -1,0 +1,13 @@
+@use "../utilities/variables" as *;
+
+.textarea-counter {
+  text-align: right;
+  margin-top: 0.25rem;
+  color: $neutral600;
+}
+
+.log-textarea {
+  border-radius: $spacing-125;
+  padding: $spacing-150 $spacing-200;
+  border: 1px solid $neutral300;
+}

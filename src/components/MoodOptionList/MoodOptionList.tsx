@@ -9,11 +9,13 @@ import MoodOption from "../MoodOption/MoodOption";
 type MoodOptionListProps = {
   moodClicked: (index: number) => void;
   selectedIndex: number;
+  loggedMood?: (mood: string) => void;
 };
 
 const MoodOptionList = ({
   moodClicked,
   selectedIndex,
+  loggedMood,
 }: MoodOptionListProps): ReactElement => {
   const moods = [
     { label: "Very Happy", image: iconVeryHappy },
@@ -31,7 +33,10 @@ const MoodOptionList = ({
             key={index}
             moodLabel={mood.label}
             moodImage={mood.image}
-            moodClicked={() => moodClicked(index)}
+            moodClicked={() => {
+              moodClicked(index);
+              if (loggedMood) loggedMood(mood.label);
+            }}
             selected={selectedIndex === index}
           />
         ))}

@@ -6,9 +6,9 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 
 const Dashboard = () => {
-  const [openModal, setOpenModal] = useState(false);
+  const [log, useLog] = useState(false);
   const handleLogMood = () => {
-    setOpenModal((prevstate) => !prevstate);
+    useLog((prevstate) => !prevstate);
   };
   return (
     <div className="dashboard-page">
@@ -28,7 +28,7 @@ const Dashboard = () => {
         <AverageStats />
         <MoodChartSleep />
       </div>
-      {openModal &&
+      {log &&
         createPortal(
           <LogMoodModal closeLog={handleLogMood} />,
           document.body.getElementsByClassName("main-wrapper")[0]

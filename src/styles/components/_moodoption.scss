@@ -27,6 +27,18 @@
   display: flex;
   flex-direction: column;
   row-gap: $spacing-150;
+
+  &:has(.feeling-option) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: $spacing-200;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    height: 445px;
+    overflow: auto;
+    scroll-behavior: smooth;
+  }
 }
 
 .mood-radiobutton {
