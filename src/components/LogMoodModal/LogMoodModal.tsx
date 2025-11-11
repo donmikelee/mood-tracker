@@ -1,6 +1,5 @@
 import iconClose from "../../assets/images/icon-close.svg";
-import { type ReactElement, useRef, useEffect } from "react";
-import MoodOption from "../MoodOption/MoodOption";
+import { useRef, useEffect } from "react";
 import { useState } from "react";
 import {
   useMoodAppStore,
@@ -8,7 +7,10 @@ import {
   useLoggedTextAppStore,
 } from "../../store/store";
 import ModalContent from "./ModalContent";
-import { moods } from "../../data/mood";
+import Stepper from "../Stepper/Stepper";
+import MoodOptionList from "../MoodOptionList/MoodOptionList";
+import FeelingOptionList from "../FeelingOptionList/FeelingOptionList";
+import TextareaStep from "../TextareaStep/TextareaStep";
 
 type LogMoodModalProps = {
   closeLog: () => void;
@@ -17,6 +19,7 @@ type LogMoodModalProps = {
 const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
   const [selectedMood, setSelectedMood] = useState<number | null>(null);
   const [selectedFeelings, setSelectedFeelings] = useState<number[]>([]);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [step, setStep] = useState<number>(0);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
   const [loggedText, setLoggedText] = useState<string>("");
@@ -30,6 +33,12 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
   );
 
   const modalRef = useRef<HTMLDivElement>(null);
+
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      closeLog();
+    }
+  };
 
   useEffect(() => {
     switch (step) {
@@ -47,61 +56,6 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
     }
   }, [step, selectedMood, loggedText, selectedFeelings]);
 
-  const renderSteps = (): ReactElement[] => {
-    const steps: number = 4;
-    const activeStep: number = step;
-
-    return Array.from({ length: steps }, (_, i) => (
-      <span
-        key={i}
-        className={`step ${i <= activeStep ? "step--active" : ""}`}
-      />
-    ));
-  };
-  const renderMoodOptions = (): ReactElement[] => {
-    const moodsRender = moods.map((mood, index) => (
-      <MoodOption
-        key={index}
-        moodLabel={mood.label}
-        moodImage={mood.image}
-        moodClicked={() => {
-          setSelectedMood(index);
-          setLoggedMood(mood.label);
-        }}
-        selected={selectedMood === index}
-      />
-    ));
-
-    return moodsRender;
-  };
-
-  const renderTextAreaStep = () => {
-    const maxLength: number = 150;
-
-    const handleLoggedTextChange = (
-      e: React.ChangeEvent<HTMLTextAreaElement>
-    ) => {
-      setLoggedText(e.target.value);
-      setLoggedTextToStore(e.target.value.trim());
-    };
-
-    return (
-      <div className="loggedtext-container">
-        <textarea
-          id="log-textarea"
-          className="log-textarea text-preset-6--italic"
-          placeholder="Today I felt..."
-          rows={4}
-          maxLength={maxLength}
-          onChange={handleLoggedTextChange}
-        ></textarea>
-        <p className="textarea-counter text-preset-8">
-          {loggedText.length}/{maxLength}
-        </p>
-      </div>
-    );
-  };
-
   const setNextStep = () => {
     setStep((prev) => prev + 1);
   };
@@ -112,7 +66,16 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
         return (
           <ModalContent
             contentTitle="How was your mood today?"
-            renderOptions={renderMoodOptions}
+            renderOptions={
+              <MoodOptionList
+                moodClicked={(index: number) => {
+                  setSelectedMood(index);
+                  setSelectedIndex(index);
+                }}
+                selectedIndex={selectedIndex === null ? -1 : selectedIndex}
+                loggedMood={setLoggedMood}
+              />
+            }
           />
         );
       case 1:
@@ -133,7 +96,13 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
         return (
           <ModalContent
             contentTitle="Write about your day..."
-            renderOptions={renderTextAreaStep}
+            renderOptions={
+              <TextareaStep
+                loggedText={loggedText}
+                setLoggedText={setLoggedText}
+                setLoggedTextToStore={setLoggedTextToStore}
+              />
+            }
           />
         );
       case 3:
@@ -144,13 +113,13 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
   };
 
   return (
-    <div className="log-mood-modal">
+    <div className="log-mood-modal" onClick={handleOverlayClick}>
       <div className="log-modal-content" ref={modalRef}>
         <p className="text-preset-2">Log your mood</p>
         <span className="close-icon" onClick={closeLog}>
           <img src={iconClose} alt="close icon" />
         </span>
-        <div className="log-stepper">{renderSteps()}</div>
+        <Stepper activeStep={step} />
         {renderModalContent()}
         {step === 3 ? (
           "Finished"
