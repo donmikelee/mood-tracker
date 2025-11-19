@@ -1,21 +1,15 @@
 type TextareaStepProps = {
   loggedText: string;
   setLoggedText: (text: string) => void;
-  setLoggedTextToStore: (text: string) => void;
 };
 
-const TextareaStep = ({
-  loggedText,
-  setLoggedText,
-  setLoggedTextToStore,
-}: TextareaStepProps) => {
-  const maxLength: number = 150;
+const TextareaStep = ({ loggedText, setLoggedText }: TextareaStepProps) => {
+  const maxLength = 150;
 
   const handleLoggedTextChange = (
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setLoggedText(e.target.value);
-    setLoggedTextToStore(e.target.value.trim());
   };
 
   return (
