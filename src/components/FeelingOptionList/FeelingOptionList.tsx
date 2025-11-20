@@ -31,20 +31,20 @@ const FeelingOptionList = ({
     );
   };
 
-  const feelingsRender = feelings.map((feeling, index) => (
-    <FeelingOption
-      key={index}
-      feelingLabel={feeling.label}
-      feelingClicked={() => {
-        handleFeelingClick(index);
-      }}
-      selected={selectedFeelings.includes(index)}
-    />
-  ));
-
   return (
     <div className="lod-mood-options">
-      <ul className="options-list">{feelingsRender}</ul>
+      <ul className="options-list">
+        {feelings.map((feeling, index) => (
+          <FeelingOption
+            key={index}
+            feelingLabel={feeling.label}
+            feelingClicked={() => {
+              handleFeelingClick(index);
+            }}
+            selected={selectedFeelings.includes(index)}
+          />
+        ))}
+      </ul>
     </div>
   );
 };
