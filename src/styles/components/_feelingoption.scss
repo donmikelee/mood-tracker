@@ -1,0 +1,39 @@
+@use "../utilities/variables" as *;
+
+.feeling-container {
+  border: 2px solid $blue100;
+  padding: 12px 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  background-color: $neutral0;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $blue600;
+  }
+
+  &:has(.selected) {
+    border-color: $blue600;
+  }
+}
+
+.feeling-checkbox {
+  height: 16px;
+  width: 16px;
+  border: 2px solid $blue200;
+  border-radius: $radius-4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.selected {
+    background-color: $blue600;
+    border-color: $blue600;
+  }
+}
+
+.feeling-label {
+  user-select: none;
+}

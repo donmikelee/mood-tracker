@@ -22,8 +22,6 @@
   z-index: 1000;
   flex-grow: 1;
   max-width: 600px;
-  height: 100%;
-  max-height: 747px;
   background: $lightGradient;
   border-radius: $radius-16;
   padding: $spacing-500 $spacing-600;
@@ -72,4 +70,9 @@
   display: flex;
   flex-direction: column;
   row-gap: $spacing-150;
+}
+
+.modal-desc {
+  margin-top: $spacing-075;
+  color: $neutral600;
 }

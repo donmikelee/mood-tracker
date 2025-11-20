@@ -1,18 +1,18 @@
 import iconClose from "../../assets/images/icon-close.svg";
-import { useRef, useState } from "react";
-import ModalContent from "./ModalContent";
-import MoodOptionList from "../MoodOptionList/MoodOptionList";
+import { useRef } from "react";
 import Stepper from "../Stepper/Stepper";
+import { useButtonUnlocker } from "../../hooks/useButtonUnlocker";
+import ModalStepContent from "./ModalStepContent";
+import { useModalStore } from "../../store/useModalStore";
 
 type LogMoodModalProps = {
   closeLog: () => void;
 };
 
 const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [step, setStep] = useState<number>(0);
-
   const modalRef = useRef<HTMLDivElement>(null);
+  const { step, setStep } = useModalStore();
+  const { getIsButtonDisabled } = useButtonUnlocker();
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -21,33 +21,7 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
   };
 
   const setNextStep = () => {
-    if (step === 0 && selectedIndex === null) return;
-    setStep((prev) => prev + 1);
-  };
-
-  const renderModalContent = () => {
-    switch (step) {
-      case 0:
-        return (
-          <ModalContent
-            contentTitle="How was your mood today?"
-            renderOptions={
-              <MoodOptionList
-                moodClicked={(index: number) => setSelectedIndex(index)}
-                selectedIndex={selectedIndex === null ? -1 : selectedIndex}
-              />
-            }
-          />
-        );
-      case 1:
-        return <p>Step 2 content</p>;
-      case 2:
-        return <p>Step 3 content</p>;
-      case 3:
-        return <p>Step 4 content</p>;
-      default:
-        return null;
-    }
+    setStep(step + 1);
   };
 
   return (
@@ -58,13 +32,13 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
           <img src={iconClose} alt="close icon" />
         </span>
         <Stepper activeStep={step} />
-        {renderModalContent()}
+        <ModalStepContent />
         {step === 3 ? (
           "Finished"
         ) : (
           <button
             className="primary-button text-preset-5 log-continue-button"
-            disabled={selectedIndex === null}
+            disabled={getIsButtonDisabled()}
             onClick={setNextStep}
           >
             Continue

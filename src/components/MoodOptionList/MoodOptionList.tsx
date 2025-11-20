@@ -1,28 +1,18 @@
 import { type ReactElement } from "react";
-import iconNeutral from "../../assets/images/icon-neutral-color.svg";
-import iconHappy from "../../assets/images/icon-happy-color.svg";
-import iconSad from "../../assets/images/icon-sad-color.svg";
-import iconVerySad from "../../assets/images/icon-very-sad-color.svg";
-import iconVeryHappy from "../../assets/images/icon-very-happy-color.svg";
 import MoodOption from "../MoodOption/MoodOption";
+import { moods } from "../../data/mood";
 
 type MoodOptionListProps = {
   moodClicked: (index: number) => void;
   selectedIndex: number;
+  loggedMood?: (mood: string) => void;
 };
 
 const MoodOptionList = ({
   moodClicked,
   selectedIndex,
+  loggedMood,
 }: MoodOptionListProps): ReactElement => {
-  const moods = [
-    { label: "Very Happy", image: iconVeryHappy },
-    { label: "Happy", image: iconHappy },
-    { label: "Neutral", image: iconNeutral },
-    { label: "Sad", image: iconSad },
-    { label: "Very Sad", image: iconVerySad },
-  ];
-
   return (
     <div className="lod-mood-options">
       <ul className="options-list">
@@ -31,7 +21,12 @@ const MoodOptionList = ({
             key={index}
             moodLabel={mood.label}
             moodImage={mood.image}
-            moodClicked={() => moodClicked(index)}
+            moodClicked={() => {
+              moodClicked(index);
+              if (loggedMood) {
+                loggedMood(mood.label);
+              }
+            }}
             selected={selectedIndex === index}
           />
         ))}
