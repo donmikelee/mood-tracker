@@ -12,6 +12,9 @@ type ModalStore = {
     value: number[] | ((prev: number[]) => number[])
   ) => void;
 
+  selectedSleepHours: number | null;
+  setSelectedSleepHours: (hours: number | null) => void;
+
   loggedMood: string | null;
   setLoggedMood: (mood: string | null) => void;
 
@@ -20,6 +23,9 @@ type ModalStore = {
 
   loggedText: string;
   setLoggedText: (text: string) => void;
+
+  loggedSleepHours: string | null;
+  setLoggedSleepHours: (hours: string | null) => void;
 };
 
 export const useModalStore = create<ModalStore>((set) => ({
@@ -37,6 +43,9 @@ export const useModalStore = create<ModalStore>((set) => ({
           ? value(state.selectedFeelings)
           : value,
     })),
+  
+  selectedSleepHours: null,
+  setSelectedSleepHours: (hours) => set({ selectedSleepHours: hours }),
 
   loggedMood: null,
   setLoggedMood: (mood) => set({ loggedMood: mood }),
@@ -46,4 +55,7 @@ export const useModalStore = create<ModalStore>((set) => ({
 
   loggedText: "",
   setLoggedText: (text) => set({ loggedText: text }),
+
+  loggedSleepHours: null,
+  setLoggedSleepHours: (hours) => set({ loggedSleepHours: hours }),
 }));

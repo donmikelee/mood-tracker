@@ -4,6 +4,7 @@ import FeelingOptionList from "../FeelingOptionList/FeelingOptionList";
 import TextareaStep from "../TextareaStep/TextareaStep";
 import { useModalStore } from "../../store/useModalStore";
 import { useState } from "react";
+import SleepHoursList from "../SleepHoursList/SleepHoursList";
 
 const ModalStepContent = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -13,10 +14,13 @@ const ModalStepContent = () => {
     setSelectedMood,
     selectedFeelings,
     setSelectedFeelings,
+    selectedSleepHours,
+    setSelectedSleepHours,
     loggedText,
     setLoggedText,
     setLoggedMood,
     setLoggedFeelings,
+    setLoggedSleepHours,
   } = useModalStore();
 
   const renderModalContent = () => {
@@ -29,9 +33,7 @@ const ModalStepContent = () => {
               <MoodOptionList
                 moodClicked={(index: number) => {
                   setSelectedMood(selectedMood === index ? null : index);
-                  setSelectedIndex(index);
                 }}
-                selectedIndex={selectedIndex === null ? -1 : selectedIndex}
                 loggedMood={setLoggedMood}
               />
             }
@@ -67,7 +69,21 @@ const ModalStepContent = () => {
         );
 
       case 3:
-        return <p>Step 4 content</p>;
+        return (
+          <ModalContent
+            contentTitle="How was your mood today?"
+            renderOptions={
+              <SleepHoursList
+                optionClicked={(index: number) => {
+                  setSelectedSleepHours(
+                    selectedSleepHours === index ? null : index
+                  );
+                }}
+                loggedSleepHours={setLoggedSleepHours}
+              />
+            }
+          />
+        );
 
       default:
         return null;

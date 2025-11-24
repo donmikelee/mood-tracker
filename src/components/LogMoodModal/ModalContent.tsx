@@ -15,9 +15,7 @@ const ModalContent = ({
       {contentDescription && (
         <p className="text-preset-6">{contentDescription}</p>
       )}
-      <div className="lod-mood-options">
-        <ul className="options-list">{renderOptions}</ul>
-      </div>
+      <div className="lod-mood-options">{renderOptions}</div>
     </>
   );
 };

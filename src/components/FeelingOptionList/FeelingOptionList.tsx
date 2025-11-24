@@ -1,5 +1,5 @@
 import { feelings } from "../../data/feelings";
-import FeelingOption from "../FeelingOption/FeelingOption";
+import FeelingOption from "./FeelingOption";
 
 type FeelingOptionListProps = {
   selectedFeelings: number[];
