@@ -71,7 +71,7 @@ const ModalStepContent = () => {
       case 3:
         return (
           <ModalContent
-            contentTitle="How was your mood today?"
+            contentTitle="How many hours did you sleep last night?"
             renderOptions={
               <SleepHoursList
                 optionClicked={(index: number) => {
