@@ -1,18 +1,13 @@
-import { type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 import MoodOption from "./MoodOption";
 import { moods } from "../../data/mood";
-import { useState } from "react";
+import { useModalStore } from "../../store/useModalStore";
 
-type MoodOptionListProps = {
-  moodClicked: (index: number) => void;
-  loggedMood?: (mood: string) => void;
-};
-
-const MoodOptionList = ({
-  moodClicked,
-  loggedMood,
-}: MoodOptionListProps): ReactElement => {
+const MoodOptionList = (): ReactElement => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedMood, setSelectedMood] = useState<number | null>(null);
+  const { setLoggedMood } = useModalStore();
+
   return (
     <div className="lod-mood-options">
       <ul className="options-list">
@@ -22,10 +17,9 @@ const MoodOptionList = ({
             moodLabel={mood.label}
             moodImage={mood.image}
             moodClicked={() => {
-              moodClicked(index), setSelectedIndex(index);
-              if (loggedMood) {
-                loggedMood(mood.label);
-              }
+              setSelectedMood(selectedMood === index ? null : index);
+              setSelectedIndex(index);
+              setLoggedMood(mood.label);
             }}
             selected={selectedIndex === index}
           />
@@ -34,4 +28,5 @@ const MoodOptionList = ({
     </div>
   );
 };
+
 export default MoodOptionList;
