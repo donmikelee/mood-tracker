@@ -1,7 +1,7 @@
 type SleepHoursOptionProps = {
   optionLabel: string;
-  optionClicked?: () => void;
-  selected?: boolean;
+  optionClicked: () => void;
+  selected: boolean;
 };
 
 const SleepHoursOption = ({
