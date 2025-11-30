@@ -10,6 +10,7 @@ const Dashboard = () => {
   const handleLogMood = () => {
     setOpenModal((prevstate) => !prevstate);
   };
+
   return (
     <div className="dashboard-page">
       <Navbar />

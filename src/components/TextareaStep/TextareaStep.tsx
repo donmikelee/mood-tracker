@@ -1,9 +1,7 @@
-type TextareaStepProps = {
-  loggedText: string;
-  setLoggedText: (text: string) => void;
-};
+import { useModalStore } from "../../store/useModalStore";
 
-const TextareaStep = ({ loggedText, setLoggedText }: TextareaStepProps) => {
+const TextareaStep = () => {
+  const { loggedText, setLoggedText } = useModalStore();
   const maxLength = 150;
 
   const handleLoggedTextChange = (

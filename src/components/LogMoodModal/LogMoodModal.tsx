@@ -21,6 +21,11 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
   };
 
   const setNextStep = () => {
+    if (step === 3) {
+      closeLog();
+      return;
+    }
+
     setStep(step + 1);
   };
 
@@ -33,17 +38,13 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
         </span>
         <Stepper activeStep={step} />
         <ModalStepContent />
-        {step === 3 ? (
-          "Finished"
-        ) : (
-          <button
-            className="primary-button text-preset-5 log-continue-button"
-            disabled={getIsButtonDisabled()}
-            onClick={setNextStep}
-          >
-            Continue
-          </button>
-        )}
+        <button
+          className="primary-button text-preset-5 log-continue-button"
+          disabled={getIsButtonDisabled()}
+          onClick={setNextStep}
+        >
+          {step === 3 ? "Submit" : "Continue"}
+        </button>
       </div>
     </div>
   );
