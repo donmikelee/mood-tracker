@@ -1,19 +1,11 @@
+import { useState } from "react";
 import { feelings } from "../../data/feelings";
-import FeelingOption from "../FeelingOption/FeelingOption";
+import FeelingOption from "./FeelingOption";
+import { useModalStore } from "../../store/useModalStore";
 
-type FeelingOptionListProps = {
-  selectedFeelings: number[];
-  setSelectedFeelings: (
-    value: number[] | ((prev: number[]) => number[])
-  ) => void;
-  setLoggedFeelings: (feelings: string[]) => void;
-};
-
-const FeelingOptionList = ({
-  selectedFeelings,
-  setSelectedFeelings,
-  setLoggedFeelings,
-}: FeelingOptionListProps) => {
+const FeelingOptionList = () => {
+  const [selectedFeelings, setSelectedFeelings] = useState<number[]>([]);
+  const { setLoggedFeelings } = useModalStore();
   const handleFeelingClick = (index: number) => {
     if (selectedFeelings.includes(index)) {
       setSelectedFeelings((prev) => prev.filter((item) => item !== index));

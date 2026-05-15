@@ -3,22 +3,22 @@ import { useModalStore } from "../store/useModalStore";
 export const useButtonUnlocker = () => {
   const {
      step,
-     selectedMood,
-     setSelectedMood,
-     selectedFeelings,
-     setSelectedFeelings,
+     loggedMood,
+     loggedFeelings,
      loggedText,
-     setLoggedText,
+     loggedSleepHours
    } = useModalStore();
 
   const getIsButtonDisabled = () => {
     switch (step) {
       case 0:
-        return selectedMood === null;
+        return loggedMood === null;
       case 1:
-        return selectedFeelings.length === 0;
+        return loggedFeelings.length === 0;
       case 2:
         return loggedText.trim().length === 0;
+      case 3:
+        return loggedSleepHours === null;
       default:
         return false;
     }
@@ -26,12 +26,10 @@ export const useButtonUnlocker = () => {
 
   return {
     step,
-    selectedMood,
-    setSelectedMood,
-    selectedFeelings,
-    setSelectedFeelings,
+    loggedMood,
+    loggedFeelings,
     loggedText,
-    setLoggedText,
+    loggedSleepHours,
     getIsButtonDisabled,
   };
 };

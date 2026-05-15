@@ -1,8 +1,8 @@
 type MoodOptionProps = {
   moodLabel: string;
   moodImage: string;
-  moodClicked?: () => void;
-  selected?: boolean;
+  moodClicked: () => void;
+  selected: boolean;
 };
 
 const MoodOption = ({
