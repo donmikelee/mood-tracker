@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"C:\\\\Users\\\\micha\\\\Desktop\\\\react-practice\\\\mood-tracker\\\\.claude\\\\worktrees\\\\naughty-hodgkin-7ed2d1\" status)"
+    ]
+  }
+}

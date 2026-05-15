@@ -1,17 +1,22 @@
+import type { ReactNode } from "react";
+
 interface ButtonProps {
-  isSubmitting?: boolean;
+  children: ReactNode;
+  onClick?: () => void;
+  disabled?: boolean;
   type?: "button" | "submit";
-  text: string;
+  additionalClass?: string;
 }
 
-const Button = ({ isSubmitting, type, text }: ButtonProps) => {
+const Button = ({ children, onClick, disabled, type = "button", additionalClass = "" }: ButtonProps) => {
   return (
     <button
-      disabled={isSubmitting}
+      disabled={disabled}
       type={type}
-      className="form-button primary-button text-preset-6"
+      onClick={onClick}
+      className={`primary-button ${additionalClass}`.trim()}
     >
-      {text}
+      {children}
     </button>
   );
 };

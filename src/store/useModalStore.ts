@@ -15,6 +15,8 @@ type ModalStore = {
 
   loggedSleepHours: string | null;
   setLoggedSleepHours: (hours: string | null) => void;
+
+  reset: () => void;
 };
 
 export const useModalStore = create<ModalStore>((set) => ({
@@ -32,4 +34,13 @@ export const useModalStore = create<ModalStore>((set) => ({
 
   loggedSleepHours: null,
   setLoggedSleepHours: (hours) => set({ loggedSleepHours: hours }),
+
+  reset: () =>
+    set({
+      step: 0,
+      loggedMood: null,
+      loggedFeelings: [],
+      loggedText: "",
+      loggedSleepHours: null,
+    }),
 }));

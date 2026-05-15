@@ -16,7 +16,7 @@ const MoodOptionList = (): ReactElement => {
       <ul className="options-list">
         {sleepHours.map((sleepHours, index) => (
           <SleepHoursOption
-            key={index}
+            key={sleepHours.label}
             optionLabel={sleepHours.label}
             optionClicked={() => {
               setSelectedSleepHours(
