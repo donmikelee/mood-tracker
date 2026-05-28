@@ -19,4 +19,7 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    host: true  // lub host: '0.0.0.0'
+  }
 });

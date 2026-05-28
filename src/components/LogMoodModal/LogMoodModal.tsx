@@ -8,9 +8,10 @@ import { useModalStore } from "../../store/useModalStore";
 
 type LogMoodModalProps = {
   closeLog: () => void;
+  submitMoodData?: () => void;
 };
 
-const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
+const LogMoodModal = ({ closeLog, submitMoodData }: LogMoodModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const { step, setStep, reset } = useModalStore();
   const { getIsButtonDisabled } = useButtonUnlocker();
@@ -28,6 +29,7 @@ const LogMoodModal = ({ closeLog }: LogMoodModalProps) => {
 
   const setNextStep = () => {
     if (step === 3) {
+      submitMoodData?.();
       handleClose();
       return;
     }
