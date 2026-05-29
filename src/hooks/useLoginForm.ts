@@ -1,7 +1,9 @@
+"use client"
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation"
 import routes from "../router/routes";
 
 const loginValidationSchema = z.object({
@@ -14,7 +16,7 @@ export type FormFields = z.infer<typeof loginValidationSchema> & {
 };
 
 export const useLoginForm = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const {
     register,
@@ -28,7 +30,7 @@ export const useLoginForm = () => {
   const onSubmit: SubmitHandler<FormFields> = async () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      navigate(routes.dashboard);
+      router.push(routes.dashboard);
     } catch (error) {
       setError("root", {
         message: "There is some server issues",

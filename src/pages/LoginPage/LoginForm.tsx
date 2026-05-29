@@ -1,3 +1,5 @@
+"use client";
+
 import { useLoginForm } from "../../hooks/useLoginForm";
 import FormField from "../../components/FormField/FormField";
 import Button from "../../components/Button/Button";

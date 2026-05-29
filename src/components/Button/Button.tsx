@@ -1,14 +1,21 @@
 import type { ReactNode } from "react";
 
 interface ButtonProps {
-  children: ReactNode;
+  isSubmitting?: boolean;
+  text?: string;
   onClick?: () => void;
   disabled?: boolean;
   type?: "button" | "submit";
   additionalClass?: string;
 }
 
-const Button = ({ children, onClick, disabled, type = "button", additionalClass = "" }: ButtonProps) => {
+const Button = ({
+  onClick,
+  disabled,
+  type = "button",
+  additionalClass = "",
+  text,
+}: ButtonProps) => {
   return (
     <button
       disabled={disabled}
@@ -16,7 +23,7 @@ const Button = ({ children, onClick, disabled, type = "button", additionalClass 
       onClick={onClick}
       className={`primary-button ${additionalClass}`.trim()}
     >
-      {children}
+      {text}
     </button>
   );
 };

@@ -1,5 +1,6 @@
-import logo from "../../assets/images/logo.svg";
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import routes from "../../router/routes";
 
 interface AuthPageProps {
@@ -15,7 +16,7 @@ const AuthPage = ({ type, FormComponent, mainWrapper }: AuthPageProps) => {
     <div className={mainWrapper ? mainWrapper : "login-page"}>
       <header className="main-header">
         <a href="#">
-          <img src={logo} alt="Mood tracker" />
+          <img src="/logo.svg" alt="Mood tracker" />
         </a>
       </header>
       <div className="container">
@@ -26,8 +27,8 @@ const AuthPage = ({ type, FormComponent, mainWrapper }: AuthPageProps) => {
             </h2>
             <span className="header-desc text-preset-6--regular">
               {isLogin
-                ? "Log in to continue tracking your mood and sleep"
-                : "Join to track your daily mood and sleep with ease."}
+                ? "Log in href continue tracking your mood and sleep"
+                : "Join href track your daily mood and sleep with ease."}
             </span>
           </div>
           <FormComponent />
@@ -36,14 +37,14 @@ const AuthPage = ({ type, FormComponent, mainWrapper }: AuthPageProps) => {
               {isLogin ? (
                 <>
                   Haven't got an account?{" "}
-                  <Link to={routes.signup} className="form-footer-link">
+                  <Link href={routes.signup} className="form-footer-link">
                     Sign up.
                   </Link>
                 </>
               ) : (
                 <>
                   Already have an account?{" "}
-                  <Link to={routes.login} className="form-footer-link">
+                  <Link href={routes.login} className="form-footer-link">
                     Log in.
                   </Link>
                 </>
