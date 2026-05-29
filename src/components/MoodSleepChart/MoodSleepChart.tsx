@@ -9,27 +9,48 @@ import {
 import CustomBar from "./CustomBar";
 import iconSleep from "../../assets/images/icon-sleep.svg";
 
-const data = [
-  { date: "Apr 06", sleep: 8, mood: "happy" },
-  { date: "Apr 07", sleep: 7, mood: "neutral" },
-  { date: "Apr 08", sleep: 6, mood: "sad" },
-  { date: "Apr 09", sleep: 4, mood: "very sad" },
-  { date: "Apr 10", sleep: 9, mood: "very happy" },
-  { date: "Apr 11", sleep: 6, mood: "happy" },
-  { date: "Apr 06", sleep: 8, mood: "happy" },
-  { date: "Apr 07", sleep: 7, mood: "neutral" },
-  { date: "Apr 08", sleep: 6, mood: "sad" },
-  { date: "Apr 09", sleep: 4, mood: "very sad" },
-  { date: "Apr 10", sleep: 9, mood: "very happy" },
-];
+export const getSleepLevel = (hours: number): number => {
+  if (hours <= 2) return 2;
+  if (hours <= 4) return 4;
+  if (hours <= 6) return 6;
+  if (hours <= 8) return 8;
+  return 10;
+};
+
+export const data = Array.from({ length: 11 }, (_, i) => {
+  const d = new Date();
+  d.setDate(d.getDate() - (10 - i));
+  const sleep = Math.floor(Math.random() * 10) + 1;
+  return {
+    date: d.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    }),
+    sleep,
+    sleepLevel: getSleepLevel(sleep),
+    mood: ["very happy", "happy", "neutral", "sad", "very sad"][
+      Math.floor(Math.random() * 5)
+    ],
+  };
+});
+
+export const SLEEP_TICK_LABELS: Record<number, string> = {
+  2: "0 - 2 hours",
+  4: "3 - 4 hours",
+  6: "5 - 6 hours",
+  8: "7 - 8 hours",
+  10: "9+ hours",
+};
 
 const renderYAxisTick = (props: any) => {
   const { x, y, payload } = props;
+  const isTopTick = payload.value === 9;
+  const offsetY = isTopTick ? -8 : 2;
   return (
     <g transform={`translate(${x},${y})`}>
-      <image href={iconSleep} x={-58} y={-12} height={10} width={10} />
-      <text x={-44} y={-2} className="mood-chart-yaxis-text text-preset-9">
-        {`${payload.value} hours`}
+      <image href={iconSleep} x={-78} y={offsetY - 10} height={10} width={10} />
+      <text x={-64} y={offsetY} className="mood-chart-yaxis-text text-preset-9">
+        {SLEEP_TICK_LABELS[payload.value]}
       </text>
     </g>
   );
@@ -41,7 +62,7 @@ const MoodSleepChart = () => {
       <h2 className="mood-chart-title text-preset-3">Mood and sleep trends</h2>
       <div className="mood-sleep-chart">
         <ResponsiveContainer width="100%" height={300} className="mood-chart">
-          <BarChart data={data} barCategoryGap={18}>
+          <BarChart data={data} barCategoryGap={18} margin={{ top: 16 }}>
             <CartesianGrid stroke="#EAEAEA" vertical={false} />
             <XAxis
               dataKey="date"
@@ -50,13 +71,15 @@ const MoodSleepChart = () => {
               className="mood-chart-xaxis-text text-preset-9"
             />
             <YAxis
-              domain={[0, 9]}
+              domain={[0, 10]}
+              ticks={[2, 4, 6, 8, 10]}
+              width={90}
               axisLine={false}
               tickLine={false}
               tick={renderYAxisTick}
             />
             <Bar
-              dataKey="sleep"
+              dataKey="sleepLevel"
               shape={(props: any) => (
                 <CustomBar {...props} trackedData={props.payload} />
               )}
