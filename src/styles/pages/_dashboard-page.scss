@@ -133,4 +133,30 @@
     right: -190px;
     opacity: 0.3;
   }
+
+  &--filled {
+    background-color: #4865DB;
+
+    .average-data-text,
+    .average-data-desc {
+      color: $neutral0;
+    }
+  }
+
+  &--very-happy { background-color: $amber300; }
+  &--happy      { background-color: $green300; }
+  &--neutral    { background-color: $blue300; }
+  &--sad        { background-color: $indigo200; }
+  &--very-sad   { background-color: $red300; }
+}
+
+.average-data-main {
+  display: flex;
+  align-items: center;
+  gap: $spacing-100;
+}
+
+.average-data-icon {
+  width: 24px;
+  height: 24px;
 }

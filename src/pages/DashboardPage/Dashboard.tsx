@@ -27,13 +27,36 @@ const Dashboard = () => {
     });
   };
 
+  const getTodaysDate = () => {
+    const today = new Date();
+    const day = today.getDate();
+
+    const suffixes: Record<string, string> = {
+      one: "st",
+      two: "nd",
+      few: "rd",
+      other: "th",
+    };
+    const ordinal = `${day}${suffixes[new Intl.PluralRules("en-US", { type: "ordinal" }).select(day)]}`;
+
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+
+    const date = today.toLocaleDateString("en-US", options);
+    return date.replace(String(day), ordinal);
+  };
+
   return (
     <div className="dashboard-page">
       <Navbar />
       <header className="greeting-text">
         <h3 className="hello-avatar text-preset-3">Hello, Lisa!</h3>
         <h2 className="large-text text-preset-1">How are you feeling today?</h2>
-        <p className="date">Wednesday, April 16th, 2025</p>
+        <p className="date">{getTodaysDate()}</p>
       </header>
       {loggedEntry ? (
         <TodayLog {...loggedEntry} />
