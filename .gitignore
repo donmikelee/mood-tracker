@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 *style.css
 *style.css.map
+.next/
