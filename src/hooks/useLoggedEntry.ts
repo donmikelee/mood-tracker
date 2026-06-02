@@ -16,6 +16,6 @@ const defaultEntry: LoggedEntry = {
 };
 
 export const useLoggedEntry = () => {
-  const [loggedEntry, setLoggedEntry] = useState<LoggedEntry | null>(defaultEntry);
+  const [loggedEntry, setLoggedEntry] = useState<LoggedEntry | null>(null);
   return { loggedEntry, setLoggedEntry };
 };

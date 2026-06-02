@@ -1,5 +1,6 @@
 import { useMoodImage } from "../../hooks/useMoodImage";
 import { useMoodQuote } from "../../hooks/useMoodQuote";
+import Image from "next/image";
 import quoteIcon from "../../assets/images/icon-quote.svg";
 import iconSleep from "../../assets/images/icon-sleep.svg";
 import iconStar from "../../assets/images/icon-star.svg";
@@ -28,10 +29,10 @@ const TodayLog = ({
           <span className="moodlog-mood text-preset-2">{loggedMood}</span>
         </p>
         {moodImage && (
-          <img src={moodImage} alt={loggedMood} className="moodlog-image" />
+          <Image src={moodImage} alt={loggedMood} className="moodlog-image" />
         )}
         <span className="quote-icon">
-          <img src={quoteIcon} alt="Quote" />
+          <Image src={quoteIcon} alt="Quote" />
         </span>
         {moodQuote && (
           <p className="moodlog-quote text-preset-6--italic">{moodQuote}</p>
@@ -40,7 +41,7 @@ const TodayLog = ({
       <div className="sleeplog-container">
         <div className="sleeptext-container">
           <span className="sleep-icon">
-            <img src={iconSleep} alt="Sleep" />
+            <Image src={iconSleep} alt="Sleep" />
           </span>
           <p className="sleeplog-text text-preset-6">Sleep</p>
         </div>
@@ -49,7 +50,7 @@ const TodayLog = ({
       <div className="feelingslog-container">
         <div className="feelingstext-container">
           <span className="star-icon">
-            <img src={iconStar} alt="Star" />
+            <Image src={iconStar} alt="Star" />
           </span>
           <p className="feelingslog-text text-preset-6">
             Reflection of the day
@@ -58,7 +59,7 @@ const TodayLog = ({
         <p className="text-preset-6">{loggedText}</p>
         <p className="feelings-tags text-preset-6--italic">
           {loggedFeelings.map((feeling) => (
-            <span>#{feeling}</span>
+            <span key={feeling}>#{feeling}</span>
           ))}
         </p>
       </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   BarChart,
   Bar,
@@ -7,7 +9,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import CustomBar from "./CustomBar";
-import iconSleep from "../../assets/images/icon-sleep.svg";
 
 export const getSleepLevel = (hours: number): number => {
   if (hours <= 2) return 2;
@@ -48,7 +49,13 @@ const renderYAxisTick = (props: any) => {
   const offsetY = isTopTick ? -8 : 2;
   return (
     <g transform={`translate(${x},${y})`}>
-      <image href={iconSleep} x={-78} y={offsetY - 10} height={10} width={10} />
+      <image
+        href={"/icon-sleep.svg"}
+        x={-78}
+        y={offsetY - 10}
+        height={10}
+        width={10}
+      />
       <text x={-64} y={offsetY} className="mood-chart-yaxis-text text-preset-9">
         {SLEEP_TICK_LABELS[payload.value]}
       </text>

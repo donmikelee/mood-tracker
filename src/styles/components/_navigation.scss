@@ -14,11 +14,18 @@
 }
 
 .avatar-image {
-  width: 42.5px;
-  height: 42.5px;
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
+  width: 42.5px;
+  height: 42.5px;
+}
+
+.avatar-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .dropdown-options {

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import iconCheck from "../../assets/images/icon-check.svg";
 
 interface FeelingOptionProps {
@@ -15,7 +16,7 @@ const FeelingOption = ({
     <li className="feeling-option" onClick={feelingClicked}>
       <div className="feeling-container">
         <span className={`feeling-checkbox ${selected ? "selected" : ""}`}>
-          {selected ? <img src={iconCheck} alt="checkmark-icon"></img> : null}
+          {selected ? <Image src={iconCheck} alt="checkmark-icon" /> : null}
         </span>
         <p className="feeling-label text-preset-6">{feelingLabel}</p>
       </div>
