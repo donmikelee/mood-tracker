@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type MoodOptionProps = {
   moodLabel: string;
   moodImage: string;
@@ -22,7 +24,7 @@ const MoodOption = ({
         ></span>
         <p className="mood-label text-preset-5">{moodLabel}</p>
       </div>
-      <img className="mood-img" src={moodImage} alt={moodLabel} />
+      <Image className="mood-img" src={moodImage} alt={moodLabel} />
     </li>
   );
 };

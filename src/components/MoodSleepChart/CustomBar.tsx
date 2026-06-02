@@ -1,3 +1,4 @@
+import Image from "next/image";
 import iconHappy from "../../assets/images/icon-happy-white.svg";
 import iconVeryHappy from "../../assets/images/icon-very-happy-white.svg";
 import iconNeutral from "../../assets/images/icon-neutral-white.svg";
@@ -33,7 +34,7 @@ const CustomBar = ({
   const moodClass = `mood-${normalizedMood}`;
 
   const iconKey = trackedData.mood.replace(/\s+([a-z])/g, (_, c) =>
-    c.toUpperCase()
+    c.toUpperCase(),
   );
   const icon = moodIcons[iconKey as keyof typeof moodIcons];
 
@@ -50,7 +51,7 @@ const CustomBar = ({
       {icon && height > 30 && (
         <foreignObject x={x - 10} y={y + 5} width={40} height={30}>
           <div className="mood-icon-container">
-            <img className="mood-icon" src={icon} alt={trackedData.mood} />
+            <Image className="mood-icon" src={icon} alt={trackedData.mood} />
           </div>
         </foreignObject>
       )}

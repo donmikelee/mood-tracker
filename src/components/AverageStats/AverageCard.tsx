@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type AverageCardProps = {
   title: string;
   description: string;
@@ -34,7 +36,7 @@ const AverageCard = ({
       </div>
       <div className={`average-data${modifiers ? ` ${modifiers}` : ""}`}>
         <div className="average-data-main">
-          {icon && <img src={icon} alt="" className="average-data-icon" />}
+          {icon && <Image src={icon} alt="" className="average-data-icon" />}
           <p className="average-data-text text-preset-4">{dataText}</p>
         </div>
         <p className="average-data-desc text-preset-7">{dataDesc}</p>

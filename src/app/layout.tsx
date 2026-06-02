@@ -18,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl">
-      <body className={redditSans.className}>{children}</body>
+      <body className={redditSans.className}>
+        <div className="main-wrapper">{children}</div>
+      </body>
     </html>
   );
 }

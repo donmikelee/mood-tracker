@@ -1,3 +1,5 @@
+"use client";
+
 import AverageStats from "../../components/AverageStats/AverageStats";
 import Button from "../../components/Button/Button";
 import LogMoodModal from "../../components/LogMoodModal/LogMoodModal";
@@ -65,9 +67,8 @@ const Dashboard = () => {
           <Button
             additionalClass="add-log text-preset-5"
             onClick={handleLogMood}
-          >
-            Log today's mood
-          </Button>
+            text="Log today's mood"
+          ></Button>
         </div>
       )}
       <div className="mood-data">

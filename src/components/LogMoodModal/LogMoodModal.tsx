@@ -1,4 +1,5 @@
 import iconClose from "../../assets/images/icon-close.svg";
+import Image from "next/image";
 import { useRef } from "react";
 import Button from "../Button/Button";
 import Stepper from "../Stepper/Stepper";
@@ -42,7 +43,7 @@ const LogMoodModal = ({ closeLog, submitMoodData }: LogMoodModalProps) => {
       <div className="log-modal-content" ref={modalRef}>
         <p className="text-preset-2">Log your mood</p>
         <span className="close-icon" onClick={handleClose}>
-          <img src={iconClose} alt="close icon" />
+          <Image src={iconClose} alt="close icon" />
         </span>
         <Stepper activeStep={step} />
         <ModalStepContent />
@@ -50,6 +51,7 @@ const LogMoodModal = ({ closeLog, submitMoodData }: LogMoodModalProps) => {
           additionalClass="text-preset-5 log-continue-button"
           disabled={getIsButtonDisabled()}
           onClick={setNextStep}
+          text={step === 3 ? "Submit" : "Continue"}
         >
           {step === 3 ? "Submit" : "Continue"}
         </Button>

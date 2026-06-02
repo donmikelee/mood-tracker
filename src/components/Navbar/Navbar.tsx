@@ -1,4 +1,7 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
 import logo from "../../assets/images/logo.svg";
 import avatar from "../../assets/images/avatar-lisa.jpg";
 import iconArrow from "../../assets/images/icon-dropdown-arrow.svg";
@@ -15,18 +18,18 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <Link to="/">
-        <img src={logo} alt="Mood tracker" />
+      <Link href="/">
+        <Image src={logo} alt="Mood tracker" />
       </Link>
       <div className="navigation-options">
         <div className="avatar-image">
-          <img src={avatar} alt="avatar-photo" />
+          <Image src={avatar} alt="avatar-photo" />
         </div>
         <div
           className={`dropdown-options ${open ? "clicked" : ""}`}
           onClick={dropdownHandler}
         >
-          <img src={iconArrow} alt="avatar-photo" />
+          <Image src={iconArrow} alt="avatar-photo" />
         </div>
         {open && (
           <div className="dropdown-menu">
@@ -35,11 +38,11 @@ const Navbar = () => {
               <li className="user-email text-preset-7">lisa@mail.com</li>
               <li className="divider"></li>
               <li className="settings clickable">
-                <img src={iconSettings} alt="Settings" />
+                <Image src={iconSettings} alt="Settings" />
                 <span className="text-preset-7">Settings</span>
               </li>
               <li className="logout clickable">
-                <img src={iconLogout} alt="Logout" />
+                <Image src={iconLogout} alt="Logout" />
                 <span className="text-preset-7">Logout</span>
               </li>
             </ul>
