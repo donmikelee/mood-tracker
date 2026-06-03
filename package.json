@@ -4,20 +4,19 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"sass --watch src/styles/main.scss public/style.css\"",
-    "sass:dev": "sass --watch src/styles/main.scss public/style.css",
-    "build": "tsc -b && vite build && sass src/styles/main.scss dist/style.css",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },  
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^5.1.1",
     "@supabase/supabase-js": "^2.106.2",
+    "next": "latest",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.60.0",
-    "react-router-dom": "^7.7.0",
     "recharts": "^3.1.2",
     "zod": "^4.0.5",
     "zustand": "^5.0.8"
@@ -27,16 +26,10 @@
     "@types/node": "^25.9.1",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
-    "@vitejs/plugin-react": "^4.6.0",
-    "concurrently": "^9.2.0",
     "eslint": "^9.30.1",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
-    "sass-embedded": "^1.89.2",
+    "sass": "^1.89.2",
     "typescript": "~5.8.3",
-    "typescript-eslint": "^8.35.1",
-    "vite": "^7.0.3",
-    "vite-plugin-full-reload": "^1.2.0"
+    "typescript-eslint": "^8.35.1"
   }
 }

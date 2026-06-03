@@ -1,4 +1,8 @@
-import { data, getSleepLevel, SLEEP_TICK_LABELS } from "../MoodSleepChart/MoodSleepChart";
+import {
+  getSleepLevel,
+  SLEEP_TICK_LABELS,
+} from "../MoodSleepChart/MoodSleepChart";
+import { MoodEntry } from "@/hooks/useMoodEntries";
 import iconHappy from "../../assets/images/icon-happy-white.svg";
 import iconVeryHappy from "../../assets/images/icon-very-happy-white.svg";
 import iconNeutral from "../../assets/images/icon-neutral-white.svg";
@@ -30,23 +34,35 @@ const MOOD_ICONS: Record<string, string> = {
   "very happy": iconVeryHappy,
 };
 
-const last5 = data.slice(-5);
+interface AverageStatsProps {
+  loggedEntries: MoodEntry[];
+}
 
-const avgMood =
-  MOOD_FROM_SCALE[
-    Math.round(
-      last5.reduce((sum, entry) => sum + MOOD_SCALE[entry.mood], 0) / 5
-    )
-  ];
+const AverageStats = ({ loggedEntries }: AverageStatsProps) => {
+  const last5 = loggedEntries.slice(0, 5);
+  console.log("Last 5 entries for average calculation:", last5);
 
-const avgSleepHours =
-  last5.reduce((sum, entry) => sum + entry.sleep, 0) / 5;
-const avgSleepLabel = SLEEP_TICK_LABELS[getSleepLevel(avgSleepHours)];
+  const avgMood =
+    last5.length > 0
+      ? MOOD_FROM_SCALE[
+          Math.round(
+            last5.reduce(
+              (sum, entry) => sum + (MOOD_SCALE[entry.mood] ?? 3),
+              0,
+            ) / last5.length,
+          )
+        ]
+      : "neutral";
 
-const avgMoodClass = avgMood.replace(/\s+/g, "-");
-const avgMoodLabel = avgMood.replace(/\b\w/g, (c) => c.toUpperCase());
+  console.log("Calculated average mood:", avgMood);
 
-const AverageStats = () => {
+  const avgSleepHours =
+    last5.length > 0
+      ? last5.reduce((sum, entry) => sum + entry.sleep_hours, 0) / last5.length
+      : 0;
+  const avgSleepLabel = SLEEP_TICK_LABELS[getSleepLevel(avgSleepHours)];
+
+  const avgMoodLabel = avgMood.replace(/\b\w/g, (c) => c.toUpperCase());
   return (
     <div className="average-stats">
       <AverageCard
@@ -54,7 +70,7 @@ const AverageStats = () => {
         description="(Last 5 Check-ins)"
         dataText={avgMoodLabel}
         dataDesc="Based on your last 5 check-ins."
-        moodClass={avgMoodClass}
+        moodClass={avgMood}
         icon={MOOD_ICONS[avgMood]}
         filled
       />

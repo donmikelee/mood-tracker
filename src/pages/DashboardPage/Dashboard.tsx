@@ -10,17 +10,27 @@ import { createPortal } from "react-dom";
 import { useModalStore } from "../../store/useModalStore";
 import TodayLog from "../../components/TodayLog/TodayLog";
 import { useLoggedEntry } from "../../hooks/useLoggedEntry";
+import { useMoodEntries } from "@/hooks/useMoodEntries";
 
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
+  const { entries, loading, addEntry } = useMoodEntries();
   const { loggedEntry, setLoggedEntry } = useLoggedEntry();
   const { loggedMood, loggedFeelings, loggedText, loggedSleepHours } =
     useModalStore();
 
-  const handleLogMood = () => setOpenModal((prev) => !prev);
+  const handleOpenLogMoodModal = () => setOpenModal((prev) => !prev);
 
-  const handleLoggedEntry = () => {
+  const handleLoggedEntry = async () => {
     if (!loggedMood || !loggedSleepHours) return;
+
+    await addEntry({
+      mood: loggedMood,
+      sleep_hours: parseInt(loggedSleepHours),
+      feelings: loggedFeelings,
+      note: loggedText,
+    });
+
     setLoggedEntry({
       loggedMood,
       loggedFeelings,
@@ -66,19 +76,19 @@ const Dashboard = () => {
         <div className="log-data">
           <Button
             additionalClass="add-log text-preset-5"
-            onClick={handleLogMood}
+            onClick={handleOpenLogMoodModal}
             text="Log today's mood"
           ></Button>
         </div>
       )}
       <div className="mood-data">
-        <AverageStats />
-        <MoodChartSleep />
+        <AverageStats loggedEntries={entries} />
+        <MoodChartSleep loggedEntries={entries} />
       </div>
       {openModal &&
         createPortal(
           <LogMoodModal
-            closeLog={handleLogMood}
+            closeLog={handleOpenLogMoodModal}
             submitMoodData={handleLoggedEntry}
           />,
           document.body.getElementsByClassName("main-wrapper")[0],
