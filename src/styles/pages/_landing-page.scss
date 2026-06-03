@@ -1,0 +1,128 @@
+@use "../utilities/variables" as *;
+@use "../utilities/typography" as *;
+
+.landing-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-300 $spacing-400;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.landing-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-200 0;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-150;
+    color: $neutral900;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-200;
+  }
+}
+
+.btn-primary {
+  background: $blue600;
+  color: $neutral0;
+  padding: $spacing-150 $spacing-300;
+  border-radius: $radius-full;
+  text-decoration: none;
+  transition: background 0.2s;
+
+  &:hover {
+    background: $blue700;
+  }
+}
+
+.btn-ghost {
+  color: $blue600;
+  text-decoration: none;
+  padding: $spacing-150 $spacing-200;
+  border-radius: $radius-full;
+  transition: background 0.2s;
+
+  &:hover {
+    background: $blue100;
+  }
+}
+
+.landing-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: $spacing-1000 0 $spacing-800;
+  gap: $spacing-300;
+
+  h1 {
+    color: $neutral900;
+    max-width: 700px;
+  }
+
+  &__accent {
+    color: $blue600;
+  }
+
+  &__desc {
+    color: $neutral600;
+    max-width: 520px;
+  }
+
+  &__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-200;
+    margin-top: $spacing-200;
+  }
+}
+
+.landing-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-300;
+  padding: $spacing-400 0;
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.landing-feature-card {
+  background: $neutral0;
+  border-radius: $radius-16;
+  padding: $spacing-400;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: $spacing-150;
+  box-shadow: $shadow-primary;
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    background: $blue600;
+    border-radius: $radius-12;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h3 {
+    color: $neutral900;
+  }
+
+  p {
+    color: $neutral600;
+  }
+}

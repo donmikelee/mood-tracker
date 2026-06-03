@@ -1,3 +1,5 @@
+import LandingPage from "@/pages/LandingPage/LandingPage";
+
 export default function Home() {
-  return <h1>Next.js działa!</h1>;
+  return <LandingPage />;
 }
