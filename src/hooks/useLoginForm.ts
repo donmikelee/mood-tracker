@@ -3,8 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
-import { useRouter } from "next/navigation"
-import routes from "../router/routes";
+import { useRouter } from "next/navigation";
 
 const loginValidationSchema = z.object({
   email: z.email(),
@@ -30,7 +29,7 @@ export const useLoginForm = () => {
   const onSubmit: SubmitHandler<FormFields> = async () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      router.push(routes.dashboard);
+      router.push("/dashboard");
     } catch (error) {
       setError("root", {
         message: "There is some server issues",

@@ -18,15 +18,18 @@ interface CustomBarProps {
 
 const moodIcons: Record<string, string> = {
   happy: iconHappy,
-  veryHappy: iconVeryHappy,
+  veryhappy: iconVeryHappy,
   neutral: iconNeutral,
   sad: iconSad,
-  verySad: iconVerySad,
+  verysad: iconVerySad,
 };
+
+const BAR_WIDTH = 40;
 
 const CustomBar = ({
   x = 0,
   y = 0,
+  width = 0,
   height = 0,
   trackedData = { mood: "" },
 }: CustomBarProps) => {
@@ -38,18 +41,20 @@ const CustomBar = ({
   );
   const icon = moodIcons[iconKey as keyof typeof moodIcons];
 
+  const centeredX = x + width / 2 - BAR_WIDTH / 2;
+
   return (
     <g>
       <rect
-        x={x - 10}
+        x={centeredX}
         y={y}
-        width={40}
+        width={BAR_WIDTH}
         height={height}
         className={moodClass}
         rx={20}
       />
       {icon && height > 30 && (
-        <foreignObject x={x - 10} y={y + 5} width={40} height={30}>
+        <foreignObject x={centeredX} y={y + 5} width={BAR_WIDTH} height={30}>
           <div className="mood-icon-container">
             <Image className="mood-icon" src={icon} alt={trackedData.mood} />
           </div>

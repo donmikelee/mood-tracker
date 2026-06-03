@@ -9,6 +9,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import CustomBar from "./CustomBar";
+import type { MoodEntry } from "@/hooks/useMoodEntries";
+
+interface MoodSleepChartProps {
+  loggedEntries: MoodEntry[];
+}
 
 export const getSleepLevel = (hours: number): number => {
   if (hours <= 2) return 2;
@@ -63,13 +68,28 @@ const renderYAxisTick = (props: any) => {
   );
 };
 
-const MoodSleepChart = () => {
+const MoodSleepChart = ({ loggedEntries }: MoodSleepChartProps) => {
+  const chartData = loggedEntries.map((entry) => ({
+    date: new Date(entry.created_at).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    }),
+    sleep: entry.sleep_hours,
+    sleepLevel: getSleepLevel(entry.sleep_hours),
+    mood: entry.mood.toLowerCase().replace(/\s+/g, ""),
+  }));
+
   return (
     <div className="mood-sleep-card">
       <h2 className="mood-chart-title text-preset-3">Mood and sleep trends</h2>
       <div className="mood-sleep-chart">
         <ResponsiveContainer width="100%" height={300} className="mood-chart">
-          <BarChart data={data} barCategoryGap={18} margin={{ top: 16 }}>
+          <BarChart
+            data={chartData}
+            barCategoryGap={18}
+            barSize={40}
+            margin={{ top: 16 }}
+          >
             <CartesianGrid stroke="#EAEAEA" vertical={false} />
             <XAxis
               dataKey="date"
@@ -87,6 +107,7 @@ const MoodSleepChart = () => {
             />
             <Bar
               dataKey="sleepLevel"
+              barSize={40}
               shape={(props: any) => (
                 <CustomBar {...props} trackedData={props.payload} />
               )}

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import routes from "../../router/routes";
 
 interface AuthPageProps {
   type: "login" | "signup";
@@ -37,14 +36,14 @@ const AuthPage = ({ type, FormComponent, mainWrapper }: AuthPageProps) => {
               {isLogin ? (
                 <>
                   Haven't got an account?{" "}
-                  <Link href={routes.signup} className="form-footer-link">
+                  <Link href="/signup" className="form-footer-link">
                     Sign up.
                   </Link>
                 </>
               ) : (
                 <>
                   Already have an account?{" "}
-                  <Link href={routes.login} className="form-footer-link">
+                  <Link href="/login" className="form-footer-link">
                     Log in.
                   </Link>
                 </>
