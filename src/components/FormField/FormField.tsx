@@ -31,7 +31,7 @@ const FormField = ({
         type={type}
         placeholder={placeholder}
         className={`form-input text-preset-6 ${
-          Object.keys(errors).length ? "input-error" : ""
+          errors?.[id] || errors?.root ? "input-error" : ""
         }`}
       />
       {errors && (

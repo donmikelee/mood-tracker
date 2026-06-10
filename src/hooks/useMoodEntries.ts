@@ -20,7 +20,11 @@ export const useMoodEntries = () => {
     fetch("/api/mood")
       .then((res) => res.json())
       .then((data) => {
-        setEntries(data)
+        if (Array.isArray(data)) {
+          setEntries(data)
+        } else {
+          setError(data.error ?? "Failed to load entries")
+        }
         setLoading(false)
       })
       .catch((err) => {

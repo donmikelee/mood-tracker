@@ -8,12 +8,19 @@ import iconArrow from "../../assets/images/icon-dropdown-arrow.svg";
 import iconSettings from "../../assets/images/icon-settings.svg";
 import iconLogout from "../../assets/images/icon-logout.svg";
 import { useState } from "react";
+import { createClient } from "@/lib/supabase";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   const dropdownHandler = () => {
     setOpen((prevState) => !prevState);
+  };
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    window.location.href = "/login";
   };
 
   return (
@@ -41,7 +48,7 @@ const Navbar = () => {
                 <Image src={iconSettings} alt="Settings" />
                 <span className="text-preset-7">Settings</span>
               </li>
-              <li className="logout clickable">
+              <li onClick={handleLogout} className="logout clickable">
                 <Image src={iconLogout} alt="Logout" />
                 <span className="text-preset-7">Logout</span>
               </li>

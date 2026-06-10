@@ -4,10 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase"
 
 const loginValidationSchema = z.object({
   email: z.email(),
-  password: z.string().min(8),
+  password: z.string(),
 });
 
 export type FormFields = z.infer<typeof loginValidationSchema> & {
@@ -26,16 +27,24 @@ export const useLoginForm = () => {
     resolver: zodResolver(loginValidationSchema),
   });
 
-  const onSubmit: SubmitHandler<FormFields> = async () => {
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      router.push("/dashboard");
-    } catch (error) {
-      setError("root", {
-        message: "There is some server issues",
-      });
+      const supabase = createClient()
+      const { error } = await supabase.auth.signInWithPassword({
+        email: data.email,
+        password: data.password,
+      })
+
+      if (error) {
+        setError("root", { message: "Invalid email or password" })
+        return
+      }
+
+      router.push("/dashboard")
+    } catch {
+      setError("root", { message: "Something went wrong. Please try again." })
     }
-  };
+  }
 
   return {
     register,

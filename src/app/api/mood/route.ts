@@ -1,7 +1,8 @@
-import { supabase } from "@/lib/supabase"
+import { createServerSupabaseClient } from "@/lib/supabase-server"
 import { NextResponse } from "next/server"
 
 export async function GET() {
+  const supabase = await createServerSupabaseClient()
   const { data, error } = await supabase
     .from("mood_entries")
     .select("*")
@@ -17,7 +18,8 @@ export async function GET() {
 export async function POST(request: Request) {
   const body = await request.json()
   body.mood = body.mood.toLowerCase()
-
+  
+  const supabase = await createServerSupabaseClient()
   const { data, error } = await supabase
     .from("mood_entries")
     .insert([body])

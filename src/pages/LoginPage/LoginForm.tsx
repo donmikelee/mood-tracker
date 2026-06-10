@@ -3,6 +3,8 @@
 import { useLoginForm } from "../../hooks/useLoginForm";
 import FormField from "../../components/FormField/FormField";
 import Button from "../../components/Button/Button";
+import { ErrorMessage } from "@hookform/error-message";
+import ErrorText from "../../components/ErrorText/ErrorText";
 
 const LoginForm = () => {
   const { register, errors, isSubmitting, submit } = useLoginForm();
@@ -26,6 +28,11 @@ const LoginForm = () => {
           label="Password"
           reg={register("password")}
           errors={errors}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="root"
+          render={({ message }) => <ErrorText text={message} />}
         />
       </div>
       <Button

@@ -40,7 +40,6 @@ interface AverageStatsProps {
 
 const AverageStats = ({ loggedEntries }: AverageStatsProps) => {
   const last5 = loggedEntries.slice(0, 5);
-  console.log("Last 5 entries for average calculation:", last5);
 
   const avgMood =
     last5.length > 0
@@ -54,7 +53,6 @@ const AverageStats = ({ loggedEntries }: AverageStatsProps) => {
         ]
       : "neutral";
 
-  console.log("Calculated average mood:", avgMood);
 
   const avgSleepHours =
     last5.length > 0

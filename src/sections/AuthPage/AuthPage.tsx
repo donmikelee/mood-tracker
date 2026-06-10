@@ -14,7 +14,7 @@ const AuthPage = ({ type, FormComponent, mainWrapper }: AuthPageProps) => {
   return (
     <div className={mainWrapper ? mainWrapper : "login-page"}>
       <header className="main-header">
-        <a href="#">
+        <a href="/">
           <img src="/logo.svg" alt="Mood tracker" />
         </a>
       </header>
