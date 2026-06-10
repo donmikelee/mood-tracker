@@ -25,3 +25,5 @@ dist-ssr
 *style.css
 *style.css.map
 .next/
+dev-output*.txt
+tsconfig.tsbuildinfo
