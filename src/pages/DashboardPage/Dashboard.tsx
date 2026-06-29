@@ -5,19 +5,28 @@ import Button from "../../components/Button/Button";
 import LogMoodModal from "../../components/LogMoodModal/LogMoodModal";
 import MoodChartSleep from "../../components/MoodSleepChart/MoodSleepChart";
 import Navbar from "../../components/Navbar/Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useModalStore } from "../../store/useModalStore";
 import TodayLog from "../../components/TodayLog/TodayLog";
 import { useLoggedEntry } from "../../hooks/useLoggedEntry";
 import { useMoodEntries } from "@/hooks/useMoodEntries";
+import { createClient } from "@/lib/supabase";
 
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [userName, setUserName] = useState("");
   const { entries, loading, addEntry } = useMoodEntries();
   const { loggedEntry, setLoggedEntry } = useLoggedEntry();
   const { loggedMood, loggedFeelings, loggedText, loggedSleepHours } =
     useModalStore();
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUserName(user?.user_metadata?.full_name ?? "");
+    });
+  }, []);
 
   const handleOpenLogMoodModal = () => setOpenModal((prev) => !prev);
 
@@ -66,7 +75,9 @@ const Dashboard = () => {
     <div className="dashboard-page">
       <Navbar />
       <header className="greeting-text">
-        <h3 className="hello-avatar text-preset-3">Hello, Lisa!</h3>
+        <h3 className="hello-avatar text-preset-3">
+          Hello{userName ? `, ${userName}` : ""}!
+        </h3>
         <h2 className="large-text text-preset-1">How are you feeling today?</h2>
         <p className="date">{getTodaysDate()}</p>
       </header>

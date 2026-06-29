@@ -12,7 +12,10 @@
       "PowerShell(Invoke-WebRequest -Uri \"http://localhost:3000/dashboard\" -MaximumRedirection 0 -ErrorAction SilentlyContinue)",
       "PowerShell(Invoke-WebRequest -Uri \"http://localhost:3000/dashboard\" -MaximumRedirection 0 -ErrorAction SilentlyContinue | Select-Object StatusCode, @{N=\"Location\";E={$_.Headers.Location}})",
       "PowerShell(Get-Process -Id \\(Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue\\).OwningProcess 2>$null | Select-Object Id, ProcessName, MainWindowTitle)",
-      "PowerShell($tcpClient = New-Object System.Net.Sockets.TcpClient; try { $tcpClient.Connect\\(\"localhost\", 3000\\); Write-Output \"TCP connected: $\\($tcpClient.Connected\\)\" } catch { Write-Output \"TCP error: $_\" } finally { $tcpClient.Close\\(\\) })"
+      "PowerShell($tcpClient = New-Object System.Net.Sockets.TcpClient; try { $tcpClient.Connect\\(\"localhost\", 3000\\); Write-Output \"TCP connected: $\\($tcpClient.Connected\\)\" } catch { Write-Output \"TCP error: $_\" } finally { $tcpClient.Close\\(\\) })",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(mkdir -p \"C:\\\\Users\\\\micha\\\\Desktop\\\\react-practice\\\\mood-tracker\\\\.claude\")"
     ]
   }
 }

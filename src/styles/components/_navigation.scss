@@ -88,4 +88,12 @@
   display: flex;
   align-items: center;
   column-gap: $spacing-125;
+
+  a {
+    display: flex;
+    align-items: center;
+    column-gap: $spacing-125;
+    text-decoration: none;
+    color: inherit;
+  }
 }

@@ -24,7 +24,9 @@ export async function middleware(request: NextRequest) {
   const { data: { session } } = await supabase.auth.getSession()
 
   const isAuthPage = ["/login", "/signup"].includes(request.nextUrl.pathname)
-  const isProtectedPage = request.nextUrl.pathname.startsWith("/dashboard")
+  const isProtectedPage =
+    request.nextUrl.pathname.startsWith("/dashboard") ||
+    request.nextUrl.pathname.startsWith("/settings")
 
   if (isProtectedPage && !session) {
     const redirectResponse = NextResponse.redirect(new URL("/login", request.url))

@@ -5,7 +5,6 @@
   height: 100%;
   width: 100%;
   max-width: $max-width-auth-box;
-  max-height: $max-height-auth-box;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -79,8 +78,21 @@
   }
 }
 
-.form-password-wrapper {
+.form-password-login-wrapper {
   margin-bottom: $spacing-400;
+
+  &:has(.input-error) {
+    margin-bottom: $spacing-0;
+  }
+}
+
+.form-confirm-password-wrapper {
+  margin-bottom: $spacing-400;
+
+  &:last-of-type {
+    margin-top: $spacing-250;
+    margin-bottom: $spacing-400;
+  }
 }
 
 .form-footer-container {
@@ -101,10 +113,118 @@
   }
 }
 
+.confirm-box {
+  align-items: center;
+  text-align: center;
+  gap: $spacing-300;
+}
+
+.confirm-icon {
+  width: 56px;
+  height: 56px;
+  animation: confirm-bounce 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both,
+    confirm-float 3s ease-in-out 0.6s infinite;
+}
+
+@keyframes confirm-bounce {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 1; }
+  80% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+@keyframes confirm-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.confirm-header {
+  margin-bottom: $spacing-0;
+}
+
+.confirm-button {
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+}
+
+.onboarding-avatar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: $spacing-200;
+  margin-top: $spacing-300;
+  margin-bottom: $spacing-400;
+}
+
+.onboarding-avatar-preview {
+  flex-shrink: 0;
+}
+
+.onboarding-avatar-image {
+  border-radius: $radius-full;
+  object-fit: cover;
+  width: 56px;
+  height: 56px;
+}
+
+.onboarding-avatar-info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-050;
+}
+
+.onboarding-avatar-hint {
+  color: $neutral600;
+}
+
+.onboarding-upload-btn {
+  position: relative;
+  display: inline-block;
+  padding: $spacing-075 $spacing-150;
+  border: 1px solid $neutral300;
+  border-radius: $radius-8;
+  cursor: pointer;
+  color: $neutral900;
+
+  &:hover {
+    border-color: $neutral600;
+  }
+}
+
+.onboarding-file-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.settings-container {
+  display: flex;
+  justify-content: center;
+  padding: $spacing-500 $spacing-200;
+}
+
+.settings-back {
+  display: inline-block;
+  margin-bottom: $spacing-300;
+  color: $neutral600;
+  text-decoration: none;
+
+  &:hover {
+    color: $neutral900;
+  }
+}
+
+.settings-success {
+  color: $green300;
+  margin-bottom: $spacing-200;
+}
+
 .form-error-text {
   display: flex;
   color: $red700;
   margin-top: $spacing-075;
+  margin-bottom: $spacing-075;
 
   span {
     margin-top: calc($spacing-075 / 2);

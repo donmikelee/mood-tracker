@@ -21,7 +21,7 @@ const LoginForm = () => {
           errors={errors}
         />
       </div>
-      <div className="form-password-wrapper">
+      <div className="form-password-login-wrapper">
         <FormField
           id={"password"}
           type={"password"}
