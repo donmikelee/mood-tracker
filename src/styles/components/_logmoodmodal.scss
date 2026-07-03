@@ -18,6 +18,15 @@
     background-color: $neutral900;
     opacity: 0.7;
   }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: 0;
+    overflow-y: hidden;
+
+    &::before {
+      display: none;
+    }
+  }
 }
 
 .log-modal-content {
@@ -36,8 +45,11 @@
 
   @media (max-width: $breakpoint-sm) {
     padding: $spacing-400 $spacing-250;
+    width: 100%;
     max-width: 100%;
-    max-height: 90vh;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
   }
 }
 
@@ -57,7 +69,8 @@
   cursor: pointer;
 
   @media (max-width: $breakpoint-sm) {
-    display: none;
+    top: $spacing-300;
+    right: $spacing-250;
   }
 }
 
