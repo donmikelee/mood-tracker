@@ -69,7 +69,7 @@ const Navbar = () => {
               </li>
               <li onClick={handleLogout} className="logout clickable">
                 <Image src={iconLogout} alt="Logout" />
-                <span className="text-preset-7">Logout</span>
+                <span className="text-preset-7">Log out</span>
               </li>
             </ul>
           </div>

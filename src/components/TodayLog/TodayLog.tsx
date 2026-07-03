@@ -45,7 +45,7 @@ const TodayLog = ({
           </span>
           <p className="sleeplog-text text-preset-6">Sleep</p>
         </div>
-        <span className="text-preset-3">{loggedSleepHours}</span>
+        <span className="text-preset-3">{loggedSleepHours} hours</span>
       </div>
       <div className="feelingslog-container">
         <div className="feelingstext-container">
@@ -56,7 +56,7 @@ const TodayLog = ({
             Reflection of the day
           </p>
         </div>
-        <p className="text-preset-6">{loggedText}</p>
+        <p className="text-preset-6 text-reflection">{loggedText}</p>
         <p className="feelings-tags text-preset-6--italic">
           {loggedFeelings.map((feeling) => (
             <span key={feeling}>#{feeling}</span>

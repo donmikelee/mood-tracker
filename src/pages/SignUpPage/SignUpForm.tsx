@@ -4,6 +4,8 @@ import { useSignUpForm } from "../../hooks/useSignUpForm";
 import FormField from "../../components/FormField/FormField";
 import Button from "../../components/Button/Button";
 import ErrorText from "../../components/ErrorText/ErrorText";
+import Image from "next/image";
+import iconHint from "../../assets/images/icon-hint.svg";
 
 const SignUpForm = () => {
   const { register, errors, isSubmitting, submit } = useSignUpForm();
@@ -14,7 +16,6 @@ const SignUpForm = () => {
         <FormField
           id="email"
           type="text"
-          placeholder="name@mail.com"
           label="Email address"
           reg={register("email")}
           errors={errors}
@@ -28,6 +29,12 @@ const SignUpForm = () => {
           reg={register("password")}
           errors={errors}
         />
+        <div className="hint-wrapper">
+          <Image src={iconHint} alt={"Hint"} className="form-hint-icon" />
+          <span className="text-preset-9">
+            Password must consider at least 8 characters
+          </span>
+        </div>
       </div>
       <div className="form-confirm-password-wrapper">
         <FormField

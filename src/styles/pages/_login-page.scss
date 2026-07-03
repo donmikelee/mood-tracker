@@ -13,3 +13,14 @@
     }
   }
 }
+
+.form-hint-icon {
+  margin-right: $spacing-100;
+}
+
+.hint-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: $spacing-100;
+  color: $neutral600;
+}

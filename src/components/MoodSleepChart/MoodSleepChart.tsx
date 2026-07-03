@@ -15,6 +15,8 @@ interface MoodSleepChartProps {
   loggedEntries: MoodEntry[];
 }
 
+const CHART_SLOT_COUNT = 11;
+
 export const getSleepLevel = (hours: number): number => {
   if (hours <= 2) return 2;
   if (hours <= 4) return 4;
@@ -79,13 +81,27 @@ const MoodSleepChart = ({ loggedEntries }: MoodSleepChartProps) => {
     mood: entry.mood.toLowerCase().replace(/\s+/g, ""),
   }));
 
+  // Recharts spreads bars evenly across all category slots, so a chart with
+  // fewer than CHART_SLOT_COUNT entries is padded with empty trailing slots
+  // to keep real bars anchored to the left instead of centered/spread out.
+  const emptySlotsNeeded = Math.max(CHART_SLOT_COUNT - chartData.length, 0);
+  const displayData = [
+    ...chartData,
+    ...Array.from({ length: emptySlotsNeeded }, () => ({
+      date: "",
+      sleep: 0,
+      sleepLevel: 0,
+      mood: "",
+    })),
+  ];
+
   return (
     <div className="mood-sleep-card">
       <h2 className="mood-chart-title text-preset-3">Mood and sleep trends</h2>
       <div className="mood-sleep-chart">
         <ResponsiveContainer width="100%" height={300} className="mood-chart">
           <BarChart
-            data={chartData}
+            data={displayData}
             barCategoryGap={18}
             barSize={40}
             margin={{ top: 16 }}

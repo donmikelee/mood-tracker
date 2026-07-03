@@ -15,8 +15,7 @@ const LoginForm = () => {
         <FormField
           id={"email"}
           type={"text"}
-          placeholder="name@mail.com"
-          label="Email adress"
+          label="Email address"
           reg={register("email")}
           errors={errors}
         />

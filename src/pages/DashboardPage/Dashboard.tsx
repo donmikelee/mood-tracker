@@ -5,71 +5,26 @@ import Button from "../../components/Button/Button";
 import LogMoodModal from "../../components/LogMoodModal/LogMoodModal";
 import MoodChartSleep from "../../components/MoodSleepChart/MoodSleepChart";
 import Navbar from "../../components/Navbar/Navbar";
-import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { useModalStore } from "../../store/useModalStore";
 import TodayLog from "../../components/TodayLog/TodayLog";
-import { useLoggedEntry } from "../../hooks/useLoggedEntry";
-import { useMoodEntries } from "@/hooks/useMoodEntries";
-import { createClient } from "@/lib/supabase";
+import LoadingPage from "../../components/LoadingPage/LoadingPage";
+import { useDashboard } from "../../hooks/useDashboard";
 
 const Dashboard = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const [userName, setUserName] = useState("");
-  const { entries, loading, addEntry } = useMoodEntries();
-  const { loggedEntry, setLoggedEntry } = useLoggedEntry();
-  const { loggedMood, loggedFeelings, loggedText, loggedSleepHours } =
-    useModalStore();
+  const {
+    openModal,
+    userName,
+    entries,
+    loggedEntry,
+    handleOpenLogMoodModal,
+    handleLoggedEntry,
+    todaysDate,
+    loading,
+  } = useDashboard();
 
-  useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setUserName(user?.user_metadata?.full_name ?? "");
-    });
-  }, []);
-
-  const handleOpenLogMoodModal = () => setOpenModal((prev) => !prev);
-
-  const handleLoggedEntry = async () => {
-    if (!loggedMood || !loggedSleepHours) return;
-
-    await addEntry({
-      mood: loggedMood,
-      sleep_hours: parseInt(loggedSleepHours),
-      feelings: loggedFeelings,
-      note: loggedText,
-    });
-
-    setLoggedEntry({
-      loggedMood,
-      loggedFeelings,
-      loggedText,
-      loggedSleepHours,
-    });
-  };
-
-  const getTodaysDate = () => {
-    const today = new Date();
-    const day = today.getDate();
-
-    const suffixes: Record<string, string> = {
-      one: "st",
-      two: "nd",
-      few: "rd",
-      other: "th",
-    };
-    const ordinal = `${day}${suffixes[new Intl.PluralRules("en-US", { type: "ordinal" }).select(day)]}`;
-
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-
-    const date = today.toLocaleDateString("en-US", options);
-    return date.replace(String(day), ordinal);
-  };
+  if (loading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="dashboard-page">
@@ -79,7 +34,7 @@ const Dashboard = () => {
           Hello{userName ? `, ${userName}` : ""}!
         </h3>
         <h2 className="large-text text-preset-1">How are you feeling today?</h2>
-        <p className="date">{getTodaysDate()}</p>
+        <p className="date">{todaysDate}</p>
       </header>
       {loggedEntry ? (
         <TodayLog {...loggedEntry} />

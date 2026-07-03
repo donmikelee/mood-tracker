@@ -27,3 +27,4 @@ dist-ssr
 .next/
 dev-output*.txt
 tsconfig.tsbuildinfo
+.claude/settings.local.json

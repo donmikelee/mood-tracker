@@ -41,7 +41,7 @@ const LogMoodModal = ({ closeLog, submitMoodData }: LogMoodModalProps) => {
   return (
     <div className="log-mood-modal" onClick={handleOverlayClick}>
       <div className="log-modal-content" ref={modalRef}>
-        <p className="text-preset-2">Log your mood</p>
+        <p className="log-modal-title text-preset-2">Log your mood</p>
         <span className="close-icon" onClick={handleClose}>
           <Image src={iconClose} alt="close icon" />
         </span>

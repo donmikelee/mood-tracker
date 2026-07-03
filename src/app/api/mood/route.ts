@@ -3,9 +3,16 @@ import { NextResponse } from "next/server"
 
 export async function GET() {
   const supabase = await createServerSupabaseClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
+
   const { data, error } = await supabase
     .from("mood_entries")
     .select("*")
+    .eq("user_id", user.id)
     .order("created_at", { ascending: false })
 
   if (error) {
@@ -16,10 +23,17 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const supabase = await createServerSupabaseClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
+
   const body = await request.json()
   body.mood = body.mood.toLowerCase()
-  
-  const supabase = await createServerSupabaseClient()
+  body.user_id = user.id
+
   const { data, error } = await supabase
     .from("mood_entries")
     .insert([body])

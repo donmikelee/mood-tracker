@@ -61,6 +61,26 @@ const AverageStats = ({ loggedEntries }: AverageStatsProps) => {
   const avgSleepLabel = SLEEP_TICK_LABELS[getSleepLevel(avgSleepHours)];
 
   const avgMoodLabel = avgMood.replace(/\b\w/g, (c) => c.toUpperCase());
+
+  if (loggedEntries.length < 5) {
+    return (
+      <div className="average-stats">
+        <AverageCard
+          title="Average Mood"
+          description="(Last 5 Check-ins)"
+          dataText="Keep tracking!"
+          dataDesc="Log 5 check-ins to see your average mood."
+        />
+        <AverageCard
+          title="Average Sleep"
+          description="(Last 5 Check-ins)"
+          dataText="Not enough data yet!"
+          dataDesc="Track 5 nights to view average sleep"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="average-stats">
       <AverageCard

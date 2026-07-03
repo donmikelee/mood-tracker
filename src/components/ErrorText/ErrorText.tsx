@@ -1,4 +1,4 @@
-import iconHint from "../../assets/images/icon-hint.svg";
+import iconHint from "../../assets/images/icon-hint-error.svg";
 import Image from "next/image";
 
 interface ErrorTextProps {

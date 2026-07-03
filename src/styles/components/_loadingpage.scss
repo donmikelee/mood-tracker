@@ -1,0 +1,29 @@
+@use "../utilities/variables" as *;
+
+.loading-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-500 135px;
+
+  @media (max-width: $breakpoint-lg) {
+    padding: $spacing-500 $spacing-400;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $spacing-300 $spacing-200;
+  }
+}
+
+.loading-page-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-300;
+}
+
+.loading-page-text {
+  color: $neutral600;
+}

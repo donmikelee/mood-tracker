@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../../assets/images/logo.svg";
 import iconHappy from "../../assets/images/icon-happy-white.svg";
+import iconSleep from "../../assets/images/icon-sleep-white.svg";
+import iconTrend from "../../assets/images/icon-trend-white.svg";
 
 const features = [
   {
@@ -12,12 +14,12 @@ const features = [
     desc: "Log how you feel every day in seconds.",
   },
   {
-    icon: iconHappy,
+    icon: iconSleep,
     title: "Monitor your sleep",
     desc: "Keep track of your sleep hours and patterns.",
   },
   {
-    icon: iconHappy,
+    icon: iconTrend,
     title: "See your trends",
     desc: "Visualize your mood and sleep data over time.",
   },
@@ -31,10 +33,16 @@ const LandingPage = () => {
           <Image src={logo} alt="Mood Tracker" />
         </div>
         <div className="landing-nav__actions">
-          <Link href="/login" className="btn-ghost text-preset-6">
+          <Link
+            href="/login"
+            className="btn-ghost text-preset-6 landing-nav__login"
+          >
             Log in
           </Link>
-          <Link href="/signup" className="btn-primary text-preset-6">
+          <Link
+            href="/signup"
+            className="btn-primary text-preset-6 landing-nav__signup"
+          >
             Sign up
           </Link>
         </div>

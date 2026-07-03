@@ -29,3 +29,6 @@ export const MOOD_QUOTES: Record<MoodLabel, string> = {
   [MoodLabel.Sad]: "One small positive thought can change your entire day.",
   [MoodLabel.VerySad]: "You are stronger than you think; the storm will pass.",
 };
+
+export const toMoodLabel = (mood: string): MoodLabel =>
+  mood.replace(/\b\w/g, (c) => c.toUpperCase()) as MoodLabel;

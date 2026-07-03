@@ -35,7 +35,7 @@ const AuthPage = ({ type, FormComponent, mainWrapper }: AuthPageProps) => {
             <span className="form-footer-text text-preset-6--regular">
               {isLogin ? (
                 <>
-                  Haven't got an account?{" "}
+                  Don't have an account?{" "}
                   <Link href="/signup" className="form-footer-link">
                     Sign up.
                   </Link>

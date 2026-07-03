@@ -1,4 +1,4 @@
-import { MOOD_QUOTES, MoodLabel } from "../data/moodImages";
+import { MOOD_QUOTES, toMoodLabel } from "../data/moodImages";
 
 export const useMoodQuote = (mood: string): string | null =>
-  MOOD_QUOTES[mood as MoodLabel] ?? null;
+  MOOD_QUOTES[toMoodLabel(mood)] ?? null;

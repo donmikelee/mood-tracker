@@ -9,6 +9,10 @@
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $spacing-300 $spacing-200;
+  }
 }
 
 .landing-nav {
@@ -16,18 +20,45 @@
   justify-content: space-between;
   align-items: center;
   padding: $spacing-200 0;
+  gap: $spacing-150;
 
   &__logo {
     display: flex;
     align-items: center;
     gap: $spacing-150;
     color: $neutral900;
+
+    @media (max-width: $breakpoint-sm) {
+      img {
+        width: 200px;
+        height: auto;
+      }
+    }
   }
 
   &__actions {
     display: flex;
     align-items: center;
     gap: $spacing-200;
+
+    .landing-nav__signup {
+      @media (max-width: $breakpoint-sm) {
+        display: none;
+      }
+    }
+
+    .landing-nav__login {
+      @media (max-width: $breakpoint-sm) {
+        background: $blue600;
+        color: $neutral0;
+        padding: $spacing-150 $spacing-200;
+        white-space: nowrap;
+
+        &:hover {
+          background: $blue700;
+        }
+      }
+    }
   }
 }
 
@@ -45,7 +76,6 @@
 }
 
 .btn-ghost {
-  color: $blue600;
   text-decoration: none;
   padding: $spacing-150 $spacing-200;
   border-radius: $radius-full;

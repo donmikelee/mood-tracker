@@ -1,0 +1,25 @@
+@use "../utilities/variables" as *;
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  transform-origin: center;
+  animation: spin 1s linear infinite;
+}
+
+.loading-spinner-track {
+  stroke: $blue100;
+}
+
+.loading-spinner-arc {
+  stroke: $blue600;
+  stroke-linecap: round;
+  stroke-dasharray: 125.6;
+  stroke-dashoffset: 94.2;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -10,6 +10,8 @@
 @use "./components/feelingoption";
 @use "./components/loggedtext";
 @use "./components/todaylog";
+@use "./components/loadingspinner";
+@use "./components/loadingpage";
 
 @use "./pages/app";
 @use "./pages/login-page";

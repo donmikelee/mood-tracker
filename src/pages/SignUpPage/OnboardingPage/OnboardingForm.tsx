@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useOnboardingForm } from "@/hooks/useOnboardingForm";
 import avatarPlaceholder from "@/assets/images/avatar-placeholder.svg";
+import iconUpload from "@/assets/images/icon-upload.svg";
 import Button from "@/components/Button/Button";
 import ErrorText from "@/components/ErrorText/ErrorText";
 
@@ -49,6 +50,7 @@ const OnboardingForm = () => {
             Min 400x400px, PNG or JPEG
           </span>
           <label htmlFor="avatar" className="onboarding-upload-btn text-preset-7">
+            <Image src={iconUpload} alt="" width={16} height={16} />
             Upload
             <input
               id="avatar"
