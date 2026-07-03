@@ -20,6 +20,13 @@ const SignUpForm = () => {
           reg={register("email")}
           errors={errors}
         />
+        <div className="hint-wrapper">
+          <Image src={iconHint} alt={"Hint"} className="form-hint-icon" />
+          <span className="text-preset-9">
+            This is a demo app. You can use any email address, no verification
+            required
+          </span>
+        </div>
       </div>
       <div className="form-password-wrapper">
         <FormField
