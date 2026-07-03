@@ -9,6 +9,7 @@ export const useSettingsForm = () => {
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [nameError, setNameError] = useState(false);
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
@@ -19,6 +20,14 @@ export const useSettingsForm = () => {
       setAvatarPreview(user.user_metadata?.avatar_url ?? null);
     });
   }, []);
+
+  const handleNameChange = (value: string) => {
+    setName(value);
+    if (nameError) {
+      setNameError(false);
+      setError(null);
+    }
+  };
 
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -36,6 +45,13 @@ export const useSettingsForm = () => {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!name.trim()) {
+      setNameError(true);
+      setError("Please enter your name.");
+      return;
+    }
+
     setIsSubmitting(true);
     setError(null);
     setSuccess(false);
@@ -86,7 +102,8 @@ export const useSettingsForm = () => {
 
   return {
     name,
-    setName,
+    setName: handleNameChange,
+    nameError,
     avatarPreview,
     handleAvatarChange,
     isSubmitting,

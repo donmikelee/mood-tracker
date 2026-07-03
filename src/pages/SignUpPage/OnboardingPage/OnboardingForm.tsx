@@ -7,16 +7,21 @@ import iconUpload from "@/assets/images/icon-upload.svg";
 import Button from "@/components/Button/Button";
 import ErrorText from "@/components/ErrorText/ErrorText";
 
-const OnboardingForm = () => {
+interface OnboardingFormProps {
+  onSaved: () => void;
+}
+
+const OnboardingForm = ({ onSaved }: OnboardingFormProps) => {
   const {
     name,
     setName,
+    nameError,
     avatarPreview,
     handleAvatarChange,
     isSubmitting,
     error,
     submit,
-  } = useOnboardingForm();
+  } = useOnboardingForm(onSaved);
 
   return (
     <form className="form" onSubmit={submit}>
@@ -27,11 +32,12 @@ const OnboardingForm = () => {
         <input
           id="name"
           type="text"
-          className="form-input"
+          className={`form-input ${nameError ? "input-error" : ""}`.trim()}
           placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        {error && <ErrorText text={error} />}
       </div>
       <div className="onboarding-avatar-wrapper">
         <div className="onboarding-avatar-preview">
@@ -49,7 +55,10 @@ const OnboardingForm = () => {
           <span className="onboarding-avatar-hint text-preset-7">
             Min 400x400px, PNG or JPEG
           </span>
-          <label htmlFor="avatar" className="onboarding-upload-btn text-preset-7">
+          <label
+            htmlFor="avatar"
+            className="onboarding-upload-btn text-preset-7"
+          >
             <Image src={iconUpload} alt="" width={16} height={16} />
             Upload
             <input
@@ -62,7 +71,6 @@ const OnboardingForm = () => {
           </label>
         </div>
       </div>
-      {error && <ErrorText text={error} />}
       <Button
         type="submit"
         isSubmitting={isSubmitting}

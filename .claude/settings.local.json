@@ -15,7 +15,17 @@
       "PowerShell($tcpClient = New-Object System.Net.Sockets.TcpClient; try { $tcpClient.Connect\\(\"localhost\", 3000\\); Write-Output \"TCP connected: $\\($tcpClient.Connected\\)\" } catch { Write-Output \"TCP error: $_\" } finally { $tcpClient.Close\\(\\) })",
       "Skill(run)",
       "Skill(run:*)",
-      "Bash(mkdir -p \"C:\\\\Users\\\\micha\\\\Desktop\\\\react-practice\\\\mood-tracker\\\\.claude\")"
+      "Bash(mkdir -p \"C:\\\\Users\\\\micha\\\\Desktop\\\\react-practice\\\\mood-tracker\\\\.claude\")",
+      "Bash(npm install *)",
+      "Bash(node scripts/gen-icons.mjs)",
+      "Bash(xargs -I{} sh -c 'echo ==={}===; cat {}')",
+      "Bash(npx tsc *)",
+      "Bash(git status *)",
+      "Bash(powershell -Command \"Stop-Process -Id 20352 -Force\")",
+      "Bash(powershell -Command \"Stop-Process -Id 6708 -Force\")",
+      "Bash(powershell -Command \"Stop-Process -Id 22876 -Force\")",
+      "Bash(xargs grep -l \"shape\")",
+      "Bash(xargs cat)"
     ]
   }
 }

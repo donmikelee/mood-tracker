@@ -6,9 +6,9 @@ export default function SignUpConfirmPage() {
   return (
     <div className="login-page">
       <header className="main-header">
-        <a href="/">
-          <img src="/logo.svg" alt="Mood tracker" />
-        </a>
+        <Link href="/">
+          <Image src="/logo.svg" alt="Mood tracker" width={178} height={40} />
+        </Link>
       </header>
       <div className="container">
         <div className="form-box confirm-box">

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 interface AuthPageProps {
@@ -14,9 +15,9 @@ const AuthPage = ({ type, FormComponent, mainWrapper }: AuthPageProps) => {
   return (
     <div className={mainWrapper ? mainWrapper : "login-page"}>
       <header className="main-header">
-        <a href="/">
-          <img src="/logo.svg" alt="Mood tracker" />
-        </a>
+        <Link href="/">
+          <Image src="/logo.svg" alt="Mood tracker" width={178} height={40} />
+        </Link>
       </header>
       <div className="container">
         <div className="form-box">
@@ -26,8 +27,8 @@ const AuthPage = ({ type, FormComponent, mainWrapper }: AuthPageProps) => {
             </h2>
             <span className="header-desc text-preset-6--regular">
               {isLogin
-                ? "Log in href continue tracking your mood and sleep"
-                : "Join href track your daily mood and sleep with ease."}
+                ? "Log in to continue tracking your mood and sleep"
+                : "Join to track your daily mood and sleep with ease."}
             </span>
           </div>
           <FormComponent />
@@ -35,7 +36,7 @@ const AuthPage = ({ type, FormComponent, mainWrapper }: AuthPageProps) => {
             <span className="form-footer-text text-preset-6--regular">
               {isLogin ? (
                 <>
-                  Don't have an account?{" "}
+                  Don&apos;t have an account?{" "}
                   <Link href="/signup" className="form-footer-link">
                     Sign up.
                   </Link>

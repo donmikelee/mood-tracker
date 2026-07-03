@@ -61,7 +61,7 @@ const LandingPage = () => {
           patterns, and take control of your wellbeing.
         </p>
         <Link href="/signup" className="btn-primary text-preset-5">
-          Get started — it's free
+          Get started — it&apos;s free
         </Link>
         <section className="landing-features">
           {features.map((feature) => (

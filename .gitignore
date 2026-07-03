@@ -8,8 +8,6 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
-dist-ssr
 *.local
 
 # Editor directories and files
@@ -22,9 +20,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-*style.css
-*style.css.map
 .next/
 dev-output*.txt
 tsconfig.tsbuildinfo
 .claude/settings.local.json
+
+# Serwist-generated service worker (rebuilt on every dev/build run)
+public/sw.js
+public/sw.js.map

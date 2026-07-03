@@ -42,6 +42,14 @@ export const data = Array.from({ length: 11 }, (_, i) => {
   };
 });
 
+interface BarShapeProps {
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+  payload?: { mood: string };
+}
+
 export const SLEEP_TICK_LABELS: Record<number, string> = {
   2: "0 - 2 hours",
   4: "3 - 4 hours",
@@ -50,8 +58,13 @@ export const SLEEP_TICK_LABELS: Record<number, string> = {
   10: "9+ hours",
 };
 
-const renderYAxisTick = (props: any) => {
-  const { x, y, payload } = props;
+interface YAxisTickProps {
+  x: number;
+  y: number;
+  payload: { value: number };
+}
+
+const renderYAxisTick = ({ x, y, payload }: YAxisTickProps) => {
   const isTopTick = payload.value === 9;
   const offsetY = isTopTick ? -8 : 2;
   return (
@@ -124,7 +137,7 @@ const MoodSleepChart = ({ loggedEntries }: MoodSleepChartProps) => {
             <Bar
               dataKey="sleepLevel"
               barSize={40}
-              shape={(props: any) => (
+              shape={(props: BarShapeProps) => (
                 <CustomBar {...props} trackedData={props.payload} />
               )}
             />

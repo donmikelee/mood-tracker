@@ -223,6 +223,19 @@
   }
 }
 
+.onboarding-skip-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: $neutral600;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: $blue600;
+  }
+}
+
 .settings-container {
   display: flex;
   justify-content: center;

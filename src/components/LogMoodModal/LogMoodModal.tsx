@@ -52,9 +52,7 @@ const LogMoodModal = ({ closeLog, submitMoodData }: LogMoodModalProps) => {
           disabled={getIsButtonDisabled()}
           onClick={setNextStep}
           text={step === 3 ? "Submit" : "Continue"}
-        >
-          {step === 3 ? "Submit" : "Continue"}
-        </Button>
+        />
       </div>
     </div>
   );

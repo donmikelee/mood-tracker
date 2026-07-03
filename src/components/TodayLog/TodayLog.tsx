@@ -25,7 +25,7 @@ const TodayLog = ({
     <div className="today-log">
       <div className="moodlog-container">
         <p className="moodlog-text text-preset-3">
-          I'm feeling{" "}
+          I&apos;m feeling{" "}
           <span className="moodlog-mood text-preset-2">{loggedMood}</span>
         </p>
         {moodImage && (

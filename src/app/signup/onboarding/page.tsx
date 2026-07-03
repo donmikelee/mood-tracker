@@ -1,25 +1,17 @@
-import OnboardingForm from "@/pages/SignUpPage/OnboardingPage/OnboardingForm";
+import Image from "next/image";
+import Link from "next/link";
+import OnboardingFlow from "@/pages/SignUpPage/OnboardingPage/OnboardingFlow";
 
 export default function OnboardingPage() {
   return (
     <div className="login-page">
       <header className="main-header">
-        <a href="/">
-          <img src="/logo.svg" alt="Mood tracker" />
-        </a>
+        <Link href="/">
+          <Image src="/logo.svg" alt="Mood tracker" width={178} height={40} />
+        </Link>
       </header>
       <div className="container">
-        <div className="form-box">
-          <div className="form-header">
-            <h2 className="header-text text-preset-3">
-              Personalize Your Experience
-            </h2>
-            <span className="header-desc text-preset-6--regular">
-              Add your name and a profile picture to make Mood yours.
-            </span>
-          </div>
-          <OnboardingForm />
-        </div>
+        <OnboardingFlow />
       </div>
     </div>
   );

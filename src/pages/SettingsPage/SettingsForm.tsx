@@ -11,6 +11,7 @@ const SettingsForm = () => {
   const {
     name,
     setName,
+    nameError,
     avatarPreview,
     handleAvatarChange,
     isSubmitting,
@@ -28,11 +29,12 @@ const SettingsForm = () => {
         <input
           id="name"
           type="text"
-          className="form-input"
+          className={`form-input ${nameError ? "input-error" : ""}`.trim()}
           placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        {error && <ErrorText text={error} />}
       </div>
       <div className="onboarding-avatar-wrapper">
         <div className="onboarding-avatar-preview">
@@ -50,7 +52,10 @@ const SettingsForm = () => {
           <span className="onboarding-avatar-hint text-preset-7">
             Max 2MB, PNG or JPEG
           </span>
-          <label htmlFor="avatar" className="onboarding-upload-btn text-preset-7">
+          <label
+            htmlFor="avatar"
+            className="onboarding-upload-btn text-preset-7"
+          >
             <Image src={iconUpload} alt="" width={16} height={16} />
             Change photo
             <input
@@ -63,7 +68,6 @@ const SettingsForm = () => {
           </label>
         </div>
       </div>
-      {error && <ErrorText text={error} />}
       {success && (
         <span className="settings-success text-preset-7">
           Changes saved successfully!

@@ -1,5 +1,4 @@
-import { type UseFormRegisterReturn } from "react-hook-form";
-import { type FormFields } from "../../hooks/useLoginForm";
+import { type FieldErrors, type FieldValues, type UseFormRegisterReturn } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import ErrorText from "../ErrorText/ErrorText";
 
@@ -7,9 +6,9 @@ interface FormFieldProps {
   id: string;
   type: string;
   label: string;
-  reg: UseFormRegisterReturn<keyof FormFields>;
+  reg: UseFormRegisterReturn<string>;
   placeholder?: string;
-  errors?: any;
+  errors?: FieldErrors<FieldValues>;
 }
 
 const FormField = ({

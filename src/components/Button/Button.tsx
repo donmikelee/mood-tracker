@@ -1,5 +1,3 @@
-import type { ReactNode } from "react";
-
 interface ButtonProps {
   isSubmitting?: boolean;
   text?: string;

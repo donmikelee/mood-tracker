@@ -21,8 +21,8 @@ const MoodOptionList = (): ReactElement => {
             optionClicked={() => {
               setSelectedSleepHours(
                 selectedSleepHours === index ? null : index
-              ),
-                setSelectedIndex(index);
+              );
+              setSelectedIndex(index);
               setLoggedSleepHours(sleepHours.label);
             }}
             selected={selectedIndex === index}
