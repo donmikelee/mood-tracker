@@ -5,7 +5,6 @@ import { useModalStore } from "../../store/useModalStore";
 
 const MoodOptionList = (): ReactElement => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [selectedMood, setSelectedMood] = useState<number | null>(null);
   const { setLoggedMood } = useModalStore();
 
   return (
@@ -17,9 +16,9 @@ const MoodOptionList = (): ReactElement => {
             moodLabel={mood.label}
             moodImage={mood.image}
             moodClicked={() => {
-              setSelectedMood(selectedMood === index ? null : index);
-              setSelectedIndex(index);
-              setLoggedMood(mood.label);
+              const isDeselecting = selectedIndex === index;
+              setSelectedIndex(isDeselecting ? null : index);
+              setLoggedMood(isDeselecting ? null : mood.label);
             }}
             selected={selectedIndex === index}
           />
