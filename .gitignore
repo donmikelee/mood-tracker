@@ -28,3 +28,6 @@ tsconfig.tsbuildinfo
 # Serwist-generated service worker (rebuilt on every dev/build run)
 public/sw.js
 public/sw.js.map
+
+# Sentry Config File
+.env.sentry-build-plugin
