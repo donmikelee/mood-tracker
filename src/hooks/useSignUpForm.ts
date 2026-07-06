@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase";
 
 const signUpValidationSchema = z
   .object({
-    email: z.email(),
+    email: z.email("Please enter correct email address"),
     password: z.string().min(8, "Password must be at least 8 characters"),
     confirmPassword: z.string(),
   })

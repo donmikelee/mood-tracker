@@ -4,6 +4,7 @@ import { useSignUpForm } from "../../hooks/useSignUpForm";
 import FormField from "../../components/FormField/FormField";
 import Button from "../../components/Button/Button";
 import ErrorText from "../../components/ErrorText/ErrorText";
+import { ErrorMessage } from "@hookform/error-message";
 import Image from "next/image";
 import iconHint from "../../assets/images/icon-hint.svg";
 
@@ -19,14 +20,23 @@ const SignUpForm = () => {
           label="Email address"
           reg={register("email")}
           errors={errors}
+          hideInlineError
         />
-        <div className="hint-wrapper">
-          <Image src={iconHint} alt={"Hint"} className="form-hint-icon" />
-          <span className="text-preset-9">
-            This is a demo app. You can use any email address, no verification
-            required
-          </span>
-        </div>
+        {errors.email ? (
+          <ErrorMessage
+            errors={errors}
+            name="email"
+            render={({ message }) => <ErrorText text={message} />}
+          />
+        ) : (
+          <div className="hint-wrapper">
+            <Image src={iconHint} alt={"Hint"} className="form-hint-icon" />
+            <span className="text-preset-9">
+              This is a demo app. You can use any email address, no verification
+              required
+            </span>
+          </div>
+        )}
       </div>
       <div className="form-password-wrapper">
         <FormField
@@ -35,13 +45,22 @@ const SignUpForm = () => {
           label="Password"
           reg={register("password")}
           errors={errors}
+          hideInlineError
         />
-        <div className="hint-wrapper">
-          <Image src={iconHint} alt={"Hint"} className="form-hint-icon" />
-          <span className="text-preset-9">
-            Password must consider at least 8 characters
-          </span>
-        </div>
+        {errors.password ? (
+          <ErrorMessage
+            errors={errors}
+            name="password"
+            render={({ message }) => <ErrorText text={message} />}
+          />
+        ) : (
+          <div className="hint-wrapper">
+            <Image src={iconHint} alt={"Hint"} className="form-hint-icon" />
+            <span className="text-preset-9">
+              Password must consider at least 8 characters
+            </span>
+          </div>
+        )}
       </div>
       <div className="form-confirm-password-wrapper">
         <FormField

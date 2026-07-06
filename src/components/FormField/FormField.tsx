@@ -9,6 +9,7 @@ interface FormFieldProps {
   reg: UseFormRegisterReturn<string>;
   placeholder?: string;
   errors?: FieldErrors<FieldValues>;
+  hideInlineError?: boolean;
 }
 
 const FormField = ({
@@ -18,6 +19,7 @@ const FormField = ({
   label,
   reg,
   errors,
+  hideInlineError,
 }: FormFieldProps) => {
   return (
     <>
@@ -33,7 +35,7 @@ const FormField = ({
           errors?.[id] || errors?.root ? "input-error" : ""
         }`}
       />
-      {errors && (
+      {errors && !hideInlineError && (
         <ErrorMessage
           errors={errors}
           name={id}

@@ -10,6 +10,7 @@ export const useSettingsForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [nameError, setNameError] = useState(false);
+  const [avatarError, setAvatarError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
@@ -34,11 +35,12 @@ export const useSettingsForm = () => {
     if (!file) return;
 
     if (file.size > 2 * 1024 * 1024) {
-      setError("Image must be smaller than 2MB.");
+      setAvatarError("Image must be smaller than 2MB.");
+      e.target.value = "";
       return;
     }
 
-    setError(null);
+    setAvatarError(null);
     setAvatarFile(file);
     setAvatarPreview(URL.createObjectURL(file));
   };
@@ -54,6 +56,7 @@ export const useSettingsForm = () => {
 
     setIsSubmitting(true);
     setError(null);
+    setAvatarError(null);
     setSuccess(false);
 
     try {
@@ -106,6 +109,7 @@ export const useSettingsForm = () => {
     nameError,
     avatarPreview,
     handleAvatarChange,
+    avatarError,
     isSubmitting,
     error,
     success,

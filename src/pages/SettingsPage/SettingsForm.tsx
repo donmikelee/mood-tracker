@@ -14,6 +14,7 @@ const SettingsForm = () => {
     nameError,
     avatarPreview,
     handleAvatarChange,
+    avatarError,
     isSubmitting,
     error,
     success,
@@ -66,6 +67,7 @@ const SettingsForm = () => {
               onChange={handleAvatarChange}
             />
           </label>
+          {avatarError && <ErrorText text={avatarError} />}
         </div>
       </div>
       {success && (
